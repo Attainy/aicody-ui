@@ -5,6 +5,16 @@
   "references": [
     {
       "path": "./apps/aicody-ui"
+    },
+    {
+      "path": "./libs/react"
     }
-  ]
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "node10",
+      "customConditions": null
+    }
+  }
 }
