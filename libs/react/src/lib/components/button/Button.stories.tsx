@@ -1,31 +1,45 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+// aicody-ui/libs/react/src/components/button/Button.stories.tsx
+import { Meta, StoryObj } from '@storybook/react';
+import Button from './Button';
 
 const meta: Meta<typeof Button> = {
+  title: 'Components/Button',
   component: Button,
-  title: 'Button',
+  argTypes: {
+    variant: {
+      control: 'radio',
+      options: ['default', 'outline'],
+    },
+    size: {
+      control: 'radio',
+      options: ['sm', 'md', 'lg'],
+    },
+  },
 };
+
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Primary = {
+export const Default: Story = {
   args: {
-    text: '',
-    padding: 0,
-    disabled: false,
+    children: 'Click Me',
+    variant: 'default',
+    size: 'md',
   },
 };
 
-export const Heading: Story = {
+export const Outline: Story = {
   args: {
-    text: '',
-    padding: 0,
-    disabled: false,
+    children: 'Outline Button',
+    variant: 'outline',
+    size: 'md',
   },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to Button!/gi)).toBeTruthy();
+};
+
+export const Large: Story = {
+  args: {
+    children: 'Large Button',
+    variant: 'default',
+    size: 'lg',
   },
 };
