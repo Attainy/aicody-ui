@@ -4,7 +4,8 @@ import { tv } from 'tailwind-variants';
 import { twMerge } from 'tailwind-merge';
 import { mergeAll } from '../../../utils/mergeAll';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'default' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
@@ -14,8 +15,10 @@ const buttonVariants = tv({
   base: 'inline-flex items-center justify-center rounded-md font-medium focus:outline-none transition-colors',
   variants: {
     variant: {
-      default: 'bg-blue-500 text-white hover:bg-blue-600',
-      outline: 'border border-blue-500 text-blue-500 hover:bg-blue-50',
+      default:
+        'bg-blue-500 text-white hover:bg-blue-600 border-solid border border-gray-300',
+      outline:
+        'border-solid border border-blue-500 text-blue-500 hover:bg-blue-50',
     },
     size: {
       sm: 'px-2 py-1 text-sm',
@@ -48,4 +51,4 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 });
 
 Button.displayName = 'Button';
-export default Button;
+export { Button, buttonVariants };
