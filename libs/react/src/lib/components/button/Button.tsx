@@ -1,16 +1,28 @@
 // aicody-ui/libs/react/src/components/button/Button.tsx
-import React, { forwardRef } from 'react';
-import { tv } from 'tailwind-variants';
+import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import { mergeAll } from '../../../utils/mergeAll';
+import { Composer } from '../composer/Composer';
+import { buttonVariants } from './ButtonVariants';
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+// export interface ButtonProps
+//   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+//   variant?: 'default' | 'outline';
+//   size?: 'sm' | 'md' | 'lg';
+//   className?: string;
+// }
+
+// 허용할 태그를 미리 정의
+export type AllowedTags = 'button' | 'a';
+// ButtonProps에 asTag 프로퍼티 추가 및 허용 타입 지정
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLElement> {
   variant?: 'default' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
+  asTag?: AllowedTags;
 }
 
+/*
 const buttonVariants = tv({
   base: 'inline-flex items-center justify-center rounded-md font-medium focus:outline-none transition-colors',
   variants: {
@@ -31,9 +43,21 @@ const buttonVariants = tv({
     size: 'md',
   },
 });
+*/
+const ButtonBase = (props: ButtonProps, ref: React.Ref<any>) => {
+  const { asTag, variant, size, className, children, ...rest } = props;
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const { variant, size, className, children, ...rest } = props;
+  // 허용된 태그 목록
+  const allowedTags: AllowedTags[] = ['button', 'a'];
+  // asTag 값이 allowedTags에 포함되지 않으면 기본값 'button' 사용
+  const Component: AllowedTags = allowedTags.includes(asTag as AllowedTags)
+    ? (asTag as AllowedTags)
+    : 'button';
+
+  // const { variant, size, className, children, ...rest } = props;
+
+  // 렌더링할 요소 타입 결정 (기본은 'button')
+  // const Component = asTag || 'button';
 
   // tailwind-variants로 계산한 기본 클래스
   const variantClasses = buttonVariants({ variant, size });
@@ -47,8 +71,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     ref,
   });
 
-  return <button {...mergedProps}>{children}</button>;
-});
+  return <Component {...mergedProps}>{children}</Component>;
+};
 
+// export const Button = Composer<ButtonProps, HTMLButtonElement>(ButtonBase);
+export const Button = Composer(ButtonBase);
 Button.displayName = 'Button';
-export { Button, buttonVariants };
+// export { Button, buttonVariants };

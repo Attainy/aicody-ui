@@ -1,2 +1,2 @@
 // aicody-ui/libs/react/src/components/button/index.ts
-export { Button, buttonVariants } from './Button';
+export { Button } from './Button';
