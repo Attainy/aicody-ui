@@ -4,60 +4,24 @@ import { twMerge } from 'tailwind-merge';
 import { mergeAll } from '../../../utils/mergeAll';
 import { Composer } from '../composer/Composer';
 import { buttonVariants } from './ButtonVariants';
+import { validateAsTag } from '../../utils/validateAtag';
 
-// export interface ButtonProps
-//   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-//   variant?: 'default' | 'outline';
-//   size?: 'sm' | 'md' | 'lg';
-//   className?: string;
-// }
-
-// 허용할 태그를 미리 정의
-export type AllowedTags = 'button' | 'a';
-// ButtonProps에 asTag 프로퍼티 추가 및 허용 타입 지정
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLElement> {
   variant?: 'default' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
-  asTag?: AllowedTags;
+  asTag?: string;
 }
 
-/*
-const buttonVariants = tv({
-  base: 'inline-flex items-center justify-center rounded-md font-medium focus:outline-none transition-colors',
-  variants: {
-    variant: {
-      default:
-        'bg-blue-500 text-white hover:bg-blue-600 border-solid border border-gray-300',
-      outline:
-        'border-solid border border-blue-500 text-blue-500 hover:bg-blue-50',
-    },
-    size: {
-      sm: 'px-2 py-1 text-sm',
-      md: 'px-4 py-2 text-base',
-      lg: 'px-6 py-3 text-lg',
-    },
-  },
-  defaultVariants: {
-    variant: 'default',
-    size: 'md',
-  },
-});
-*/
+// Button.tsx 내에서 기본 태그와 허용 오버라이드 태그를 직접 설정합니다.
+const DEFAULT_TAG = 'button';
+const ALLOWED_OVERRIDE_TAGS: string[] = ['a', 'div'];
+
 const ButtonBase = (props: ButtonProps, ref: React.Ref<any>) => {
   const { asTag, variant, size, className, children, ...rest } = props;
 
-  // 허용된 태그 목록
-  const allowedTags: AllowedTags[] = ['button', 'a'];
-  // asTag 값이 allowedTags에 포함되지 않으면 기본값 'button' 사용
-  const Component: AllowedTags = allowedTags.includes(asTag as AllowedTags)
-    ? (asTag as AllowedTags)
-    : 'button';
-
-  // const { variant, size, className, children, ...rest } = props;
-
-  // 렌더링할 요소 타입 결정 (기본은 'button')
-  // const Component = asTag || 'button';
+  // validateAsTag를 사용하여 asTag 값을 검증합니다.
+  const Component = validateAsTag(asTag, ALLOWED_OVERRIDE_TAGS, DEFAULT_TAG);
 
   // tailwind-variants로 계산한 기본 클래스
   const variantClasses = buttonVariants({ variant, size });
