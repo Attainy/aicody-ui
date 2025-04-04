@@ -5,6 +5,7 @@ import { Button } from './Button';
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
+  tags: ['autodocs'],
   argTypes: {
     variant: {
       control: 'radio',
@@ -28,18 +29,18 @@ export const Default: Story = {
   },
 };
 
-export const Outline: Story = {
-  args: {
-    children: 'Outline Button',
-    variant: 'outline',
-    size: 'md',
-  },
-};
-
 export const Large: Story = {
   args: {
     children: 'Large Button',
     variant: 'default',
     size: 'lg',
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    children: 'Outline Button',
+    variant: 'outline',
+    size: 'md',
   },
 };
