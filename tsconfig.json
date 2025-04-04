@@ -4,9 +4,6 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/aicody-ui"
-    },
-    {
       "path": "./libs/react"
     }
   ],
