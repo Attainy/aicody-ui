@@ -1,8 +1,9 @@
-/** @type {import('tailwindcss').Config} */
+// apps/document/tailwind.config.js
 module.exports = {
   content: [
-    './src/**/*.{js,jsx,ts,tsx,mdx}', // Docusaurus 파일
-    '../libs/react/**/*.{js,jsx,ts,tsx}', // 외부 라이브러리 파일
+    './src/**/*.{js,jsx,ts,tsx,mdx}', // Docusaurus src
+    '../../libs/react/src/**/*.{js,jsx,ts,tsx}', // monorepo lib
+    '../../node_modules/@aicody-ui/react/**/*.{js,jsx,ts,tsx}', // dist 버전
   ],
   theme: {
     extend: {},

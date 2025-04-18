@@ -1,42 +1,17 @@
-import type {ReactNode} from 'react';
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import React from 'react';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import Heading from '@theme/Heading';
+import HomepageFeatures from '../components/HomepageFeatures';
 
-import styles from './index.module.css';
-
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+export default function Home(): JSX.Element {
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-}
-
-export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
-      <HomepageHeader />
+    <Layout title="홈페이지" description="AI UI 컴포넌트 라이브러리 문서">
       <main>
+        <section className="py-20 text-center bg-gradient-to-b from-white to-gray-100">
+          <h1 className="text-5xl font-bold mb-4">Welcome to Aicody UI</h1>
+          <p className="text-lg text-gray-600">
+            프론트엔드 컴포넌트 라이브러리를 위한 문서입니다.
+          </p>
+        </section>
         <HomepageFeatures />
       </main>
     </Layout>

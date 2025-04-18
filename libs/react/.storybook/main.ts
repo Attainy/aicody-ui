@@ -21,7 +21,7 @@ const config: StorybookConfig = {
       plugins: [react(), nxViteTsPaths()],
       resolve: {
         alias: {
-          '@': path.resolve(__dirname, '../libs/react/src'),
+          '@': path.resolve(__dirname, '../libs/react/src/'),
         },
       },
       css: {

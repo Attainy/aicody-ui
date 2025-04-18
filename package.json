@@ -2,7 +2,11 @@
   "name": "@aicody-ui/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "docs:start": "nx run document:start",
+    "docs:build": "nx run document:build",
+    "docs:deploy": "gh-pages -d apps/document/build"
+  },
   "private": true,
   "dependencies": {
     "react": "18.3.1",
@@ -52,6 +56,7 @@
     "eslint-plugin-jsx-a11y": "6.10.1",
     "eslint-plugin-react": "7.35.0",
     "eslint-plugin-react-hooks": "5.0.0",
+    "gh-pages": "^6.3.0",
     "jiti": "2.4.2",
     "jsdom": "~22.1.0",
     "nx": "20.6.4",
