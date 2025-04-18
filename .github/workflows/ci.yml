@@ -1,6 +1,7 @@
 name: Deploy Docusaurus Docs
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -9,6 +10,7 @@ on:
       - 'libs/react/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
+      - '.github/workflows/**'
 
 jobs:
   deploy-docs:
