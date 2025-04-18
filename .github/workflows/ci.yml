@@ -33,6 +33,8 @@ jobs:
 
       - name: Build react library
         run: pnpm nx build react
+        env:
+          NX_CLOUD: false
 
       - name: Build Docusaurus docs
         run: pnpm nx run document:build
