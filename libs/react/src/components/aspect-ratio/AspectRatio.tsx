@@ -1,8 +1,9 @@
 import React from 'react';
-import { aspectRatioVariants } from './AspectRatioVariants';
+
 import { Composer } from '../composer/Composer';
-import { mergeAll } from '../../../utils/mergeAll';
+import { mergeAll } from '../../utils/mergeAll';
 import { twMerge } from 'tailwind-merge';
+import { aspectRatioVariants } from './AspectRatioVariants';
 
 export interface AspectRatioProps extends React.HTMLAttributes<HTMLDivElement> {
   ratio?: 'square' | 'video' | 'photo';

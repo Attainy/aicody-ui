@@ -3,7 +3,7 @@ import React from 'react';
 import { Composer } from '../composer/Composer';
 import { alertDialogVariants } from './AlertDialogVariants';
 import { twMerge } from 'tailwind-merge';
-import { mergeAll } from '../../../utils/mergeAll';
+import { mergeAll } from '../../utils/mergeAll';
 
 export interface AlertDialogProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'default' | 'danger';

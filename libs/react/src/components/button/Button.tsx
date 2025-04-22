@@ -1,7 +1,7 @@
 // aicody-ui/libs/react/src/components/button/Button.tsx
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
-import { mergeAll } from '../../../utils/mergeAll';
+import { mergeAll } from '../../utils/mergeAll';
 import { Composer } from '../composer/Composer';
 import { buttonVariants } from './ButtonVariants';
 import { validateAsTag } from '../../utils/validateAtag';
