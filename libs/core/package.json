@@ -32,5 +32,8 @@
     "@emotion/css": "^11.13.5",
     "@vanilla-extract/css": "^1.17.1",
     "tailwind-variants": "^1.0.0"
+  },
+  "dependencies": {
+    "cosmiconfig": "^9.0.0"
   }
 }

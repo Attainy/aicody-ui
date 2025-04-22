@@ -1,29 +1,27 @@
 import { styleVariants } from '@vanilla-extract/css';
-import type { StylingAdapter, VariantDefinition } from '../index';
+import type { StylingAdapter, VariantDefinition } from '../types';
 
 export const VanillaExtractStylingAdapter: StylingAdapter = {
-  cn: (...classes) => classes.filter(Boolean).join(' '),
+  mergeClass: (...classes) => classes.filter(Boolean).join(' '),
   variants: <Opts extends Record<string, any>>(
     config: VariantDefinition<Opts>
   ) => {
+    // build-time에 CSS 생성
     const sheets = styleVariants(
       Object.fromEntries(
-        Object.entries(config.variants).map(([variantKey, variantMap]) => [
-          variantKey,
+        Object.entries(config.variants).map(([key, map]) => [
+          key,
           Object.fromEntries(
-            Object.entries(variantMap).map(([val, styles]) => [
-              val,
-              styles as string,
-            ])
+            Object.entries(map).map(([val, cls]) => [val, cls as string])
           ),
         ])
       )
     );
-    return (opts: Opts) => {
-      const key = (Object.keys(opts) as (keyof Opts)[])
+    return (opts: Partial<Opts>) => {
+      const key = (Object.keys(opts) as Array<keyof Opts>)
         .map((k) => opts[k])
         .join('-');
-      return sheets[key];
+      return sheets[key] ?? '';
     };
   },
 };
