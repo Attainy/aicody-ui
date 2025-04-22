@@ -7,7 +7,7 @@
       "path": "./libs/react"
     },
     {
-      "path": "./core"
+      "path": "./libs/core"
     }
   ],
   "ts-node": {
