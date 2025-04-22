@@ -1,7 +1,7 @@
 // aicody-ui/libs/react/src/components/alert-dialog/AlertDialog.tsx
 import React from 'react';
 import { Composer } from '../composer/Composer';
-import { alertDialogVariants } from './AlertDialogVariants';
+import { alertDialogVariants } from './AlertDialog.tailwind';
 import { twMerge } from 'tailwind-merge';
 import { mergeAll } from '../../utils/mergeAll';
 

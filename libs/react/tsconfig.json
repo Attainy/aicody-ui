@@ -1,6 +1,5 @@
 {
   "files": [],
-  "include": [],
   "references": [
     {
       "path": "./tsconfig.lib.json"
@@ -9,5 +8,15 @@
       "path": "./tsconfig.storybook.json"
     }
   ],
-  "extends": "../../tsconfig.base.json"
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "declaration": true, // .d.ts 파일 생성
+    "declarationMap": true,
+    "emitDeclarationOnly": true // 컴파일은 d.ts만
+  },
+  "include": [
+    "src/**/*" // src 폴더 전체를 포함
+  ],
+  "exclude": ["node_modules", "dist"]
 }

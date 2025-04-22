@@ -1,6 +1,6 @@
 // aicody-ui/libs/react/src/components/avatar/Avatar.tsx
 import React from 'react';
-import { avatarVariants } from './AvatarVariants';
+import { avatarVariants } from './Avatar.tailwind';
 import { Composer } from '../composer/Composer';
 import { twMerge } from 'tailwind-merge';
 

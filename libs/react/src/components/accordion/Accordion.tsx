@@ -1,7 +1,7 @@
 // aicody-ui/libs/react/src/components/accordion/Accordion.tsx
 import React, { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { accordionVariants } from './AccordionVariants';
+import { accordionVariants } from './Accordion.tailwind';
 import { mergeAll } from '../../utils/mergeAll';
 import { Composer } from '../composer/Composer';
 import { ChevronDown } from 'lucide-react';

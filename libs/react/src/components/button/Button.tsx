@@ -3,7 +3,7 @@ import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import { mergeAll } from '../../utils/mergeAll';
 import { Composer } from '../composer/Composer';
-import { buttonVariants } from './ButtonVariants';
+import { buttonVariants } from './Button.tailwind';
 import { validateAsTag } from '../../utils/validateAtag';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLElement> {
@@ -24,7 +24,7 @@ const ButtonBase = (props: ButtonProps, ref: React.Ref<any>) => {
   const Component = validateAsTag(asTag, ALLOWED_OVERRIDE_TAGS, DEFAULT_TAG);
 
   // tailwind-variants로 계산한 기본 클래스
-  const variantClasses = buttonVariants({ variant, size });
+  const variantClasses = twMerge(buttonVariants(), className);
   // tailwind-merge로 외부 className과 병합
   const mergedClassName = twMerge(variantClasses, className);
 
