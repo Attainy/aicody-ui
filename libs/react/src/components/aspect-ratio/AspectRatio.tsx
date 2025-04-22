@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Composer } from '../composer/Composer';
-import { mergeAll } from '../../utils/mergeAll';
+import { mergeAll } from '../mergeAll';
 import { twMerge } from 'tailwind-merge';
 import { aspectRatioVariants } from './AspectRatio.tailwind';
 

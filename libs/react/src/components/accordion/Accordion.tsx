@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { accordionVariants } from './Accordion.tailwind';
-import { mergeAll } from '../../utils/mergeAll';
+import { mergeAll } from '../mergeAll';
 import { Composer } from '../composer/Composer';
 import { ChevronDown } from 'lucide-react';
 
