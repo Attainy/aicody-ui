@@ -1,4 +1,3 @@
-// aicody-ui/libs/react/src/components/button/ButtonVariants.ts
 import { tv } from 'tailwind-variants';
 
 export const buttonVariants = tv({

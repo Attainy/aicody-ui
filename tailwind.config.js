@@ -1,13 +1,9 @@
-// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    // Document app
-    './apps/document/src/**/*.{js,ts,jsx,tsx,mdx}',
-    // React library
-    './libs/react/src/**/*.{js,ts,jsx,tsx}',
-    // Optional: include markdown docs if you use MDX
-    './apps/document/**/*.mdx',
+    './src/**/*.{js,jsx,ts,tsx}',
+    './src/**/*.stories.@(js|jsx|ts|tsx)',
+    './.storybook/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {

@@ -1,5 +1,1 @@
-import './tailwind-preview.css';
-import type { Preview } from '@storybook/react';
-
-const preview: Preview = { parameters: { layout: 'centered' } };
-export default preview;
+import './tailwind.css';

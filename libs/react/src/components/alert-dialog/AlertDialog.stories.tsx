@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { AlertDialog, AlertDialogProps } from './AlertDialog';
-import { commonArgTypes } from '../../../.storybook/argTypes';
+import { commonArgTypes } from '../argTypes';
 
 const meta: Meta<AlertDialogProps> = {
   title: 'Components/AlertDialog',

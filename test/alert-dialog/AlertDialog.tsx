@@ -1,4 +1,3 @@
-// aicody-ui/libs/react/src/components/alert-dialog/AlertDialog.tsx
 import React from 'react';
 import { Composer } from '../composer/Composer';
 import { alertDialogVariants } from './AlertDialog.tailwind';

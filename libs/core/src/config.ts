@@ -1,4 +1,3 @@
-// libs/core/src/config.ts
 import { cosmiconfigSync } from 'cosmiconfig';
 
 export interface AicodyConfig {

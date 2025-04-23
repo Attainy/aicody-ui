@@ -5,9 +5,6 @@
   "files": [
     "dist"
   ],
-  "scripts": {
-    "build": "nx run @aicody-ui/react:build"
-  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -24,10 +21,16 @@
   },
   "dependencies": {
     "lucide-react": "^0.487.0",
-    "tailwind-variants": "^1.0.0",
-    "tailwind-merge": "^3.1.0"
+    "tailwind-merge": "^3.1.0",
+    "tailwind-variants": "^1.0.0"
   },
   "devDependencies": {
-    "rollup": "^4.14.0"
+    "@storybook/addon-postcss": "^2.0.0",
+    "@tailwindcss/postcss": "^4.1.4",
+    "@tailwindcss/vite": "^4.1.4",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "rollup": "^4.14.0",
+    "tailwindcss": "^4.1.4"
   }
 }

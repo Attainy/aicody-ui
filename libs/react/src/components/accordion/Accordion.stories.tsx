@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Accordion, AccordionProps } from './Accordion';
-import { commonArgTypes } from '../../../.storybook/argTypes';
+import { commonArgTypes } from '../argTypes';
 
 const meta: Meta<AccordionProps> = {
   title: 'Components/Accordion',

@@ -1,4 +1,3 @@
-// aicody-ui/libs/react/src/components/composer/Composer.tsx
 import React, { forwardRef } from 'react';
 
 /**

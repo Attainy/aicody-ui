@@ -11,12 +11,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "declaration": true, // .d.ts 파일 생성
+    "declaration": true,
     "declarationMap": true,
-    "emitDeclarationOnly": true // 컴파일은 d.ts만
+    "emitDeclarationOnly": true
   },
-  "include": [
-    "src/**/*" // src 폴더 전체를 포함
-  ],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
