@@ -1,5 +1,5 @@
 export * from './mergeProps';
-export * from './mergeRefs';
-export * from './mergeAriaProps';
+export * from './mergeRef';
+export * from './mergeAriaAttrs';
 export * from './mergeAttributes';
 export * from './mergeEventHandlers';

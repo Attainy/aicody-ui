@@ -1,4 +1,4 @@
-export function mergeRefs<T>(
+export function mergeRef<T>(
   ...refs: Array<React.Ref<T> | undefined>
 ): React.RefCallback<T> {
   return (value: T | null) => {
