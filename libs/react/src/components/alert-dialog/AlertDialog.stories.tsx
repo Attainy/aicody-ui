@@ -1,30 +1,14 @@
-// aicody-ui/libs/react/src/components/alert-dialog/AlertDialog.stories.tsx
-import { Meta, StoryObj } from '@storybook/react';
-import { AlertDialog } from './AlertDialog';
+import type { Meta, StoryObj } from '@storybook/react';
+import { AlertDialog, AlertDialogProps } from './AlertDialog';
+import { commonArgTypes } from '../../../.storybook/argTypes';
 
-const meta: Meta<typeof AlertDialog> = {
+const meta: Meta<AlertDialogProps> = {
   title: 'Components/AlertDialog',
   component: AlertDialog,
-  tags: ['autodocs'],
-  args: {
-    children: '이 작업은 되돌릴 수 없습니다. 계속하시겠습니까?',
-    variant: 'default',
-    size: 'md',
-  },
+  argTypes: commonArgTypes,
 };
-
 export default meta;
 
-type Story = StoryObj<typeof AlertDialog>;
-
-export const Default: Story = {};
-export const Danger: Story = {
-  args: {
-    variant: 'danger',
-  },
-};
-export const Large: Story = {
-  args: {
-    size: 'lg',
-  },
+export const PrimaryAlert: StoryObj<AlertDialogProps> = {
+  args: { kind: 'primary', size: 'md', children: '경고 메시지 예시입니다.' },
 };

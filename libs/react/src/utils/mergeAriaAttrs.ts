@@ -1,6 +1,5 @@
 export function mergeAriaAttrs(
-  defaults: React.AriaAttributes,
-  overrides: React.AriaAttributes
+  ...sources: Array<React.AriaAttributes | undefined>
 ): React.AriaAttributes {
-  return { ...defaults, ...overrides };
+  return Object.assign({}, ...sources);
 }

@@ -1,32 +1,23 @@
-// aicody-ui/libs/react/src/components/accordion/Accordion.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-import { Accordion } from './Accordion';
+import { Accordion, AccordionProps } from './Accordion';
+import { commonArgTypes } from '../../../.storybook/argTypes';
 
-const meta: Meta<typeof Accordion> = {
+const meta: Meta<AccordionProps> = {
   title: 'Components/Accordion',
   component: Accordion,
-  tags: ['autodocs'],
-  args: {
-    title: 'Click me!',
-    children: 'Accordion content goes here.',
-  },
-  argTypes: {
-    defaultOpen: { control: 'boolean' },
-  },
+  argTypes: commonArgTypes,
 };
-
 export default meta;
 
-type Story = StoryObj<typeof Accordion>;
-
-export const Default: Story = {
+export const Default: StoryObj<AccordionProps> = {
   args: {
-    defaultOpen: false,
-  },
-};
-
-export const OpenByDefault: Story = {
-  args: {
-    defaultOpen: true,
+    kind: 'primary',
+    size: 'md',
+    children: (
+      <>
+        <summary>아코디언 제목</summary>
+        <div>아코디언 내용</div>
+      </>
+    ),
   },
 };

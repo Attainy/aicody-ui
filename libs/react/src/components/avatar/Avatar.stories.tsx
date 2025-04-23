@@ -1,46 +1,18 @@
-// aicody-ui/libs/react/src/components/avatar/Avatar.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-import { Avatar } from './Avatar';
+import { Avatar, AvatarProps } from './Avatar';
 
-const meta: Meta<typeof Avatar> = {
+const meta: Meta<AvatarProps> = {
   title: 'Components/Avatar',
   component: Avatar,
-  tags: ['autodocs'],
-  args: {
-    src: 'https://placehold.co/100x100.png',
-    alt: 'Avatar',
-  },
   argTypes: {
-    size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-    },
-    variant: {
-      control: 'select',
-      options: ['default'],
-    },
+    size: { control: 'select', options: ['sm', 'md', 'lg'] },
   },
 };
-
 export default meta;
 
-type Story = StoryObj<typeof Avatar>;
-
-export const Default: Story = {
-  args: {
-    size: 'md',
-    variant: 'default',
-  },
+export const Image: StoryObj<AvatarProps> = {
+  args: { size: 'md', src: 'https://via.placeholder.com/80', alt: '아바타' },
 };
-
-export const Small: Story = {
-  args: {
-    size: 'sm',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: 'lg',
-  },
+export const Fallback: StoryObj<AvatarProps> = {
+  args: { size: 'md', fallback: 'AB' },
 };

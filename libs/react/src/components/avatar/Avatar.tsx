@@ -1,36 +1,33 @@
-// aicody-ui/libs/react/src/components/avatar/Avatar.tsx
 import React from 'react';
-import { avatarVariants } from './Avatar.tailwind';
-import { Composer } from '../composer/Composer';
-import { twMerge } from 'tailwind-merge';
+import { mergeClass } from '../../utils/mergeClass';
 
 export interface AvatarProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  src: string;
-  alt?: string;
+  fallback?: React.ReactNode;
   size?: 'sm' | 'md' | 'lg';
-  variant?: 'default';
-  className?: string;
 }
-
-const DEFAULT_IMAGE =
-  'https://cdn.pixabay.com/photo/2024/08/01/20/34/ai-generated-8938184_1280.jpg';
-
-const AvatarBase = (props: AvatarProps, ref: React.Ref<HTMLImageElement>) => {
-  const { src, alt, size, variant, className, ...rest } = props;
-
-  const baseClassName = avatarVariants({ size, variant });
-  const mergedClassName = twMerge(baseClassName, className);
-
-  return (
-    <img
-      src={src || DEFAULT_IMAGE}
-      alt={alt}
-      ref={ref}
-      className={mergedClassName}
-      {...rest}
-    />
-  );
+const avatarSizes = {
+  sm: 'h-8 w-8 text-sm',
+  md: 'h-10 w-10',
+  lg: 'h-14 w-14 text-lg',
 };
-
-export const Avatar = Composer(AvatarBase);
+export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
+  ({ fallback, size = 'md', className, ...imgProps }, ref) => (
+    <div
+      ref={ref}
+      className={mergeClass(
+        `relative inline-block overflow-hidden rounded-full bg-brand-gray`,
+        avatarSizes[size],
+        className
+      )}
+    >
+      {imgProps.src ? (
+        <img {...imgProps} className="h-full w-full object-cover" />
+      ) : (
+        <span className="flex h-full w-full items-center justify-center">
+          {fallback}
+        </span>
+      )}
+    </div>
+  )
+);
 Avatar.displayName = 'Avatar';

@@ -1,46 +1,24 @@
-// aicody-ui/libs/react/src/components/button/Button.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
+import { Button, ButtonProps } from './Button';
+import { commonArgTypes } from '../../../.storybook/argTypes';
 
-const meta: Meta<typeof Button> = {
+const meta: Meta<ButtonProps> = {
   title: 'Components/Button',
   component: Button,
-  tags: ['autodocs'],
-  argTypes: {
-    variant: {
-      control: 'radio',
-      options: ['default', 'outline'],
-    },
-    size: {
-      control: 'radio',
-      options: ['sm', 'md', 'lg'],
-    },
-  },
+  argTypes: commonArgTypes,
 };
-
 export default meta;
-type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {
-  args: {
-    children: 'Click Me',
-    variant: 'default',
-    size: 'md',
-  },
+type Story = StoryObj<ButtonProps>;
+export const Primary: Story = {
+  args: { kind: 'primary', size: 'md', children: '버튼' },
 };
-
-export const Large: Story = {
-  args: {
-    children: 'Large Button',
-    variant: 'default',
-    size: 'lg',
-  },
+export const Secondary: Story = {
+  args: { kind: 'secondary', size: 'md', children: '버튼' },
 };
-
 export const Outline: Story = {
-  args: {
-    children: 'Outline Button',
-    variant: 'outline',
-    size: 'md',
-  },
+  args: { kind: 'outline', size: 'md', children: '버튼' },
+};
+export const Plain: Story = {
+  args: { kind: 'plain', size: 'md', children: '버튼' },
 };

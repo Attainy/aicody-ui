@@ -1,42 +1,37 @@
-// libs/react/src/components/button/Button.tsx
-import { forwardRef } from 'react';
-import { mergeProps, mergeRefs, mergeEventHandlers } from '../../utils';
-import { twMerge } from 'tailwind-merge';
-import { buttonVariants } from './Button.tailwind';
-import {
-  ButtonProps,
-  DEFAULT_BUTTON_TAG,
-  ALLOWED_OVERRIDE_BUTTON_TAGS,
-} from './button.types';
-import { validateAsTag } from '../validateAsTag';
+import React from 'react';
+import { tv, type VariantProps } from 'tailwind-variants';
+import { mergeClass } from '../../utils/mergeClass';
 
-export const Button = forwardRef<HTMLElement, ButtonProps>((props, ref) => {
-  const {
-    asTag,
-    variant = 'default',
-    size = 'md',
-    className,
-    children,
-    ...rest
-  } = props;
-
-  // 1) 유효한 태그로 검증
-  const Component = validateAsTag(
-    asTag,
-    ALLOWED_OVERRIDE_BUTTON_TAGS,
-    DEFAULT_BUTTON_TAG
-  );
-
-  // 2) variant 함수로 클래스 생성 & twMerge로 병합
-  const variantClasses = buttonVariants({ variant, size });
-  const mergedClassName = twMerge(variantClasses, className);
-
-  // 3) 이벤트 핸들러 · props · ref 병합
-  const withEvents = mergeEventHandlers(rest, {}); // 기본 핸들러 없으면 {} 로
-  const withProps = mergeProps(withEvents, { className: mergedClassName });
-  const withPropsAndRef = mergeRefs(withProps, ref);
-
-  return <Component {...withPropsAndRef}>{children}</Component>;
+export const buttonVariants = tv({
+  base: 'inline-flex items-center justify-center font-medium transition-colors focus:outline-none disabled:opacity-50 disabled:pointer-events-none',
+  variants: {
+    kind: {
+      primary:
+        'bg-primary-main text-white hover:bg-primary-sub focus:ring-primary-main',
+      secondary:
+        'bg-secondary-main text-white hover:bg-secondary-sub focus:ring-secondary-main',
+      outline:
+        'bg-transparent border border-primary-main text-primary-main hover:bg-primary-main/10 focus:ring-primary-main',
+      plain: 'bg-transparent text-inherit hover:bg-transparent focus:ring-0',
+    },
+    size: {
+      sm: 'px-2 py-1 text-sm rounded',
+      md: 'px-4 py-2 rounded-md',
+      lg: 'px-6 py-3 rounded-lg',
+    },
+  },
+  defaultVariants: { kind: 'primary', size: 'md' },
 });
 
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants>;
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ kind, size, className, ...props }, ref) => (
+    <button
+      ref={ref}
+      className={mergeClass(buttonVariants({ kind, size }), className)}
+      {...props}
+    />
+  )
+);
 Button.displayName = 'Button';
