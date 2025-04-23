@@ -1,18 +1,14 @@
 // libs/react/src/components/button/Button.tsx
 import { forwardRef } from 'react';
-import {
-  mergeProps,
-  mergeRefs,
-  mergeEventHandlers,
-} from '@aicody-ui/core/utils';
-import { validateAsTag } from '../validateAsTag';
+import { mergeProps, mergeRefs, mergeEventHandlers } from '../../utils';
 import { twMerge } from 'tailwind-merge';
 import { buttonVariants } from './Button.tailwind';
-import type {
+import {
   ButtonProps,
   DEFAULT_BUTTON_TAG,
   ALLOWED_OVERRIDE_BUTTON_TAGS,
 } from './button.types';
+import { validateAsTag } from '../validateAsTag';
 
 export const Button = forwardRef<HTMLElement, ButtonProps>((props, ref) => {
   const {

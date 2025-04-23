@@ -1,9 +1,6 @@
 const { withNx } = require('@nx/rollup/with-nx');
 const url = require('@rollup/plugin-url');
 const svg = require('@svgr/rollup');
-const postcss = require('rollup-plugin-postcss');
-const tailwindcss = require('tailwindcss');
-const autoprefixer = require('autoprefixer');
 
 module.exports = withNx(
   {
@@ -22,6 +19,7 @@ module.exports = withNx(
   {
     output: {
       name: 'AicodyUI',
+      sourcemap: true,
     },
     plugins: [
       svg({
@@ -31,11 +29,6 @@ module.exports = withNx(
       }),
       url({
         limit: 10000,
-      }),
-      postcss({
-        plugins: [tailwindcss('./tailwind.config.js'), autoprefixer()],
-        extract: true,
-        minimize: true,
       }),
     ],
   }

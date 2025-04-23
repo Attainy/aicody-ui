@@ -13,7 +13,7 @@
  */
 export function validateAsTag(
   tag: unknown,
-  allowedTags: string[],
+  allowedTags: readonly string[] | string[],
   defaultTag: string
 ): string {
   if (typeof tag === 'string' && allowedTags.includes(tag)) {

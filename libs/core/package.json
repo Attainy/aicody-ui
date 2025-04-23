@@ -6,17 +6,30 @@
   "module": "./dist/index.esm.js",
   "types": "./dist/index.esm.d.ts",
   "exports": {
-    "./package.json": "./package.json",
     ".": {
-      "development": "./src/index.ts",
-      "types": "./dist/index.esm.d.ts",
-      "import": "./dist/index.esm.js",
-      "default": "./dist/index.esm.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
     },
-    "./utils/*": {
-      "import": "./dist/utils/*.js",
-      "require": "./dist/utils/*.cjs.js",
-      "types": "./dist/utils/*.d.ts"
+    "./theme": {
+      "import": "./dist/theme/index.js",
+      "require": "./dist/theme/index.cjs.js",
+      "types": "./dist/theme/index.d.ts"
+    },
+    "./theme/*": {
+      "import": "./dist/theme/*.js",
+      "require": "./dist/theme/*.cjs.js",
+      "types": "./dist/theme/*.d.ts"
+    },
+    "./types": {
+      "import": "./dist/types/index.js",
+      "require": "./dist/types/index.cjs.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./types/*": {
+      "import": "./dist/types/*.js",
+      "require": "./dist/types/*.cjs.js",
+      "types": "./dist/types/*.d.ts"
     }
   },
   "files": [
