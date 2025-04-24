@@ -8,7 +8,7 @@
     "docs:deploy": "gh-pages -d apps/document/build",
     "core:build": "nx build core",
     "react:build": "nx build react",
-    "storybook:build": "nx build-storybook storybook"
+    "storybook:build": "nx run source:build-storybook"
   },
   "private": true,
   "dependencies": {

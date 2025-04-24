@@ -1,4 +1,4 @@
-name: Deploy Docusaurus Docs
+name: Deploy Docusaurus Docs and Storybook
 
 on:
   workflow_dispatch:
@@ -39,9 +39,23 @@ jobs:
       - name: Build Docusaurus docs
         run: pnpm nx run document:build
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy Docusaurus to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./apps/document/build
           publish_branch: gh-pages
+
+      - name: Build Storybook
+        run: pnpm nx run @aicody-ui/source:build-storybook
+        env:
+          NX_CLOUD: false
+
+      - name: Deploy Storybook to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./storybook-static
+          publish_branch: gh-pages
+          destination_dir: storybook
+          keep_files: true
