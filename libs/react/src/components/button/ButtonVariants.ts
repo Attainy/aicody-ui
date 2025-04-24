@@ -10,8 +10,7 @@ export const buttonVariants = tv({
         'bg-secondary-main text-white hover:bg-secondary-sub focus:ring-secondary-main',
       outline:
         'bg-brand-white border-primary-main text-primary-main hover:bg-primary-main/10 focus:ring-primary-main',
-      plain:
-        'bg-brand-white border-brand-black text-brand-black hover:bg-brand-base focus:ring-0',
+      plain: 'bg-brand-black text-brand-white hover:opacity-80 focus:ring-0',
     },
     size: {
       sm: 'px-3 py-1 text-sm rounded',
