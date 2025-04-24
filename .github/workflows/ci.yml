@@ -53,7 +53,7 @@ jobs:
           publish_branch: gh-pages
 
       - name: Build Storybook (with deps)
-        run: pnpm nx run @aicody-ui/source:build-storybook --with-deps --outputDir=storybook-static
+        run: pnpm nx run @aicody-ui/source:build-storybook --with-deps -- -o storybook-static
         env:
           NX_CLOUD: false
 

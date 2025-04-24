@@ -13,7 +13,7 @@ module.exports = {
         'brand-white': '#ffffff',
         'brand-base': '#f5f5f5',
         'brand-gray': '#cccccc',
-        'primary-main': '#de283b',
+        'primary-main': '#ff3347',
         'primary-sub': '#ff6366',
         'secondary-main': '#25b1bf',
         'secondary-sub': '#005461',
