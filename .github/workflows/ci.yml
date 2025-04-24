@@ -31,6 +31,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Sync Nx workspace
+        run: pnpm nx sync --yes
+
       - name: Build react library
         run: pnpm nx build react
         env:
