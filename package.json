@@ -5,7 +5,10 @@
   "scripts": {
     "docs:start": "nx run document:start",
     "docs:build": "nx run document:build",
-    "docs:deploy": "gh-pages -d apps/document/build"
+    "docs:deploy": "gh-pages -d apps/document/build",
+    "core:build": "nx build core",
+    "react:build": "nx build react",
+    "storybook:build": "nx build-storybook storybook"
   },
   "private": true,
   "dependencies": {

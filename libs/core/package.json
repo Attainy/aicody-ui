@@ -2,40 +2,25 @@
   "name": "@aicody-ui/core",
   "version": "0.1.1",
   "type": "module",
+  "files": [
+    "dist"
+  ],
   "main": "./dist/index.esm.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.esm.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.esm.js",
       "require": "./dist/index.cjs.js",
       "types": "./dist/index.d.ts"
-    },
-    "./theme": {
-      "import": "./dist/theme/index.js",
-      "require": "./dist/theme/index.cjs.js",
-      "types": "./dist/theme/index.d.ts"
     },
     "./theme/*": {
       "import": "./dist/theme/*.js",
       "require": "./dist/theme/*.cjs.js",
       "types": "./dist/theme/*.d.ts"
     },
-    "./types": {
-      "import": "./dist/types/index.js",
-      "require": "./dist/types/index.cjs.js",
-      "types": "./dist/types/index.d.ts"
-    },
-    "./types/*": {
-      "import": "./dist/types/*.js",
-      "require": "./dist/types/*.cjs.js",
-      "types": "./dist/types/*.d.ts"
-    }
+    "./types/*": "./dist/types/*.d.ts"
   },
-  "files": [
-    "dist",
-    "!**/*.tsbuildinfo"
-  ],
   "peerDependencies": {
     "@emotion/css": ">=11",
     "@vanilla-extract/css": ">=1",

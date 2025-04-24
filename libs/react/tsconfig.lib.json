@@ -32,5 +32,9 @@
     "**/*.stories.tsx"
   ],
   "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
-  "references": []
+  "references": [
+    {
+      "path": "../core/tsconfig.lib.json"
+    }
+  ]
 }

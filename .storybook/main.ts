@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 const config: StorybookConfig = {
-  stories: ['./libs/react/src/components/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ['../libs/react/src/components/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
