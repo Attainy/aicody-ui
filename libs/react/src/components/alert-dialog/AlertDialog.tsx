@@ -1,34 +1,19 @@
 import React from 'react';
-import {
-  dialogVariants,
-  dialogContentVariants,
-  dialogTitleVariants,
-  dialogDescriptionVariants,
-  dialogButtonVariants,
-  triggerButtonVariants,
-} from './AlertDialogVariants';
+import { dialogContentVariants } from './AlertDialogVariants';
 import type { AlertDialogProps } from './AlertDialog.types';
 import { twMerge } from 'tailwind-merge';
-
-const defaultAlertDialogProps = {
-  kind: 'primary' as const,
-  title: 'Are you absolutely sure?',
-  description:
-    'This action cannot be undone. This will permanently delete your account and remove your data from our servers.',
-  triggerText: 'Show Dialog',
-  cancelText: 'Cancel',
-  confirmText: 'Continue',
-};
+import { Button } from '../button';
 
 export const AlertDialog: React.FC<AlertDialogProps> = ({
-  kind,
-  title,
-  description,
-  triggerText,
-  cancelText,
-  confirmText,
+  kind = 'primary',
+  size = 'md',
+  title = 'Confirm Your Action',
+  description = 'Are you sure you want to proceed? This action cannot be undone.',
+  triggerText = 'Take Action',
+  cancelText = 'Cancel',
+  confirmText = 'Continue',
   onConfirm,
-}: defaultAlertDialogProps) => {
+}) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleOpen = () => setIsOpen(true);
@@ -40,34 +25,34 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
 
   return (
     <>
-      <button
-        type="button"
-        onClick={handleOpen}
-        className={triggerButtonVariants()}
-      >
+      <Button type="button" kind={kind} size={size} onClick={handleOpen}>
         {triggerText}
-      </button>
+      </Button>
 
       {isOpen && (
-        <div className={dialogVariants()}>
-          <div className={dialogContentVariants()}>
-            <h2 className={dialogTitleVariants()}>{title}</h2>
-            <p className={dialogDescriptionVariants()}>{description}</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+          <div
+            className={twMerge(
+              'bg-white rounded-lg shadow-lg p-6 w-full',
+              dialogContentVariants()
+            )}
+          >
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">
+              {title}
+            </h2>
+            <p className="text-sm text-gray-500 mb-4">{description}</p>
             <div className="flex justify-end gap-2">
-              <button
-                type="button"
-                onClick={handleClose}
-                className={dialogButtonVariants({ type: 'cancel', kind })}
-              >
+              <Button kind="outline" onClick={handleClose}>
                 {cancelText}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                kind={kind === 'outline' ? 'plain' : kind}
+                size={size}
                 onClick={handleConfirm}
-                className={dialogButtonVariants({ type: 'confirm', kind })}
               >
                 {confirmText}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

@@ -7,9 +7,10 @@ const meta: Meta<AlertDialogProps> = {
   component: AlertDialog,
   args: {
     kind: 'primary',
-    title: 'Are you absolutely sure?',
+    size: 'md',
+    title: 'Confirm Your Action',
     description:
-      'This action cannot be undone. This will permanently delete your account and remove your data from our servers.',
+      'Are you sure you want to proceed? This action cannot be undone.',
     triggerText: 'Show Dialog',
     cancelText: 'Cancel',
     confirmText: 'Continue',
@@ -17,7 +18,11 @@ const meta: Meta<AlertDialogProps> = {
   argTypes: {
     kind: {
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'plain'],
+      options: ['primary', 'secondary', 'outline', 'plain'],
+    },
+    size: {
+      control: { type: 'inline-radio' },
+      options: ['sm', 'md', 'lg'],
     },
     title: {
       control: { type: 'text' },
@@ -59,6 +64,12 @@ export const Primary: StoryObj<AlertDialogProps> = {
 export const Secondary: StoryObj<AlertDialogProps> = {
   args: {
     kind: 'secondary',
+  },
+};
+
+export const Outline: StoryObj<AlertDialogProps> = {
+  args: {
+    kind: 'outline',
   },
 };
 
