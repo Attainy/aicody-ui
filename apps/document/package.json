@@ -32,6 +32,7 @@
     "@docusaurus/plugin-client-redirects": "^3.7.0",
     "@docusaurus/tsconfig": "3.7.0",
     "@docusaurus/types": "3.7.0",
+    "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "10.4.13",
     "eslint-plugin-mdx": "^3.3.1",
     "gh-pages": "^6.3.0",

@@ -48,7 +48,7 @@ const config: Config = {
       title: 'Aicody-ui',
       logo: {
         alt: 'Aicody-ui Logo',
-        src: 'img/logo.svg',
+        src: 'img/aicody-logo.png',
       },
       items: [
         {
@@ -109,6 +109,7 @@ const config: Config = {
   } satisfies Preset.ThemeConfig,
   plugins: [
     '@docusaurus/plugin-client-redirects', // URL 리다이렉트 지원
+
     function webpackAliasPlugin() {
       return {
         name: 'custom-alias',
