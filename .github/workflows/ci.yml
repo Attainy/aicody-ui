@@ -1,23 +1,24 @@
-name: Deploy Docusaurus Docs and Storybook
+name: Deploy Docs & Storybook
 
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - 'apps/document/**'
       - 'libs/react/**'
+      - 'libs/core/**'
+      - 'libs/source/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - '.github/workflows/**'
 
 jobs:
-  deploy-docs:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -25,32 +26,34 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install pnpm
-        run: npm install -g pnpm
+      - name: Install pnpm & deps
+        run: |
+          npm install -g pnpm
+          pnpm install
 
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Sync Nx workspace
+      - name: Sync TS project references
         run: pnpm nx sync --yes
 
-      - name: Build react library
-        run: pnpm nx build react
+      - name: Verify sync status (optional)
+        run: pnpm nx sync:check
+
+      - name: Build @aicody-ui/react (with deps)
+        run: pnpm nx build @aicody-ui/react --with-deps
         env:
           NX_CLOUD: false
 
       - name: Build Docusaurus docs
         run: pnpm nx run document:build
 
-      - name: Deploy Docusaurus to GitHub Pages
+      - name: Deploy docs to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./apps/document/build
           publish_branch: gh-pages
 
-      - name: Build Storybook
-        run: pnpm nx run @aicody-ui/source:build-storybook
+      - name: Build Storybook (with deps)
+        run: pnpm nx run @aicody-ui/source:build-storybook --with-deps --outputDir=storybook-static
         env:
           NX_CLOUD: false
 
