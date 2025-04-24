@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ProfilePhoto } from './ProfilePhoto';
-import type { ProfilePhotoProps } from './profilePhoto.types';
+import type { ProfilePhotoProps } from './ProfilePhoto.types';
 
 const meta: Meta<ProfilePhotoProps> = {
   title: 'Components/ProfilePhoto',

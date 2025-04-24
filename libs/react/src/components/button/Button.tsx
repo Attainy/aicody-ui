@@ -1,6 +1,6 @@
 import React from 'react';
 import { buttonVariants } from './ButtonVariants';
-import { ButtonProps } from './button.types';
+import type { ButtonProps } from './button.types';
 import { twMerge } from 'tailwind-merge';
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
