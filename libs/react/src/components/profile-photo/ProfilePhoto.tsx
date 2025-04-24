@@ -1,17 +1,22 @@
-// src/components/Avatar/ProfilePhoto.tsx
 import React from 'react';
-import { mergeClass } from '../../utils/mergeClass';
 import { profilePhotoVariants } from './ProfilePhotoVariants';
 import type { ProfilePhotoProps } from './profilePhoto.types';
-import defaultProfilePhoto from './profilePhoto.png';
+import defaultProfilePhoto from './defaultProfilePhoto.png';
+import { twMerge } from 'tailwind-merge';
 
 export const ProfilePhoto = React.forwardRef<HTMLDivElement, ProfilePhotoProps>(
   ({ size = 'md', className, ...imgProps }, ref) => {
-    const classes = profilePhotoVariants({ size });
     const srcToShow = imgProps.src ?? defaultProfilePhoto;
 
     return (
-      <div ref={ref} className={mergeClass(classes, className)}>
+      <div
+        ref={ref}
+        className={twMerge(
+          'relative inline-block overflow-hidden rounded-full bg-brand-gray',
+          profilePhotoVariants({ size }),
+          className
+        )}
+      >
         <img
           {...imgProps}
           src={srcToShow}

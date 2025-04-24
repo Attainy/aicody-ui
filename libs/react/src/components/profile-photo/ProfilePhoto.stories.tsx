@@ -1,10 +1,9 @@
-// src/components/Avatar/Avatar.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
 import { ProfilePhoto } from './ProfilePhoto';
 import type { ProfilePhotoProps } from './profilePhoto.types';
 
 const meta: Meta<ProfilePhotoProps> = {
-  title: 'Components/Avatar',
+  title: 'Components/ProfilePhoto',
   component: ProfilePhoto,
   args: {
     size: 'md',

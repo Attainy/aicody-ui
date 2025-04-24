@@ -1,7 +1,6 @@
 import { tv } from 'tailwind-variants';
 
 export const profilePhotoVariants = tv({
-  base: 'relative inline-block overflow-hidden rounded-full bg-brand-gray',
   variants: {
     size: {
       sm: 'h-8 w-8 text-sm',

@@ -15,6 +15,7 @@ module.exports = {
         'brand-gray': '#cccccc',
         'primary-main': '#ff3347',
         'primary-sub': '#ff6366',
+        'primary-base': '#fdecee',
         'secondary-main': '#06A5F0',
         'secondary-sub': '#4ac6ff',
       },

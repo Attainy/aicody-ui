@@ -1,15 +1,14 @@
 import { tv } from 'tailwind-variants';
 
 export const buttonVariants = tv({
-  base: 'inline-flex items-center justify-center font-medium transition-colors focus:outline-none disabled:opacity-50 disabled:pointer-events-none border',
   variants: {
     kind: {
       primary:
-        'bg-primary-main text-white hover:bg-primary-sub focus:ring-primary-main',
+        'bg-primary-main border-primary-main text-white hover:bg-primary-sub hover:border-primary-sub focus:ring-primary-main',
       secondary:
-        'bg-secondary-main text-white hover:bg-secondary-sub focus:ring-secondary-main',
+        'bg-secondary-main border-secondary-main text-white hover:bg-secondary-sub hover:border-secondary-sub focus:ring-secondary-main',
       outline:
-        'bg-brand-white border-primary-main text-primary-main hover:bg-primary-main/10 focus:ring-primary-main',
+        'bg-brand-white border-primary-main text-primary-main hover:bg-primary-base focus:ring-primary-main',
       plain: 'bg-brand-black text-brand-white hover:opacity-80 focus:ring-0',
     },
     size: {
