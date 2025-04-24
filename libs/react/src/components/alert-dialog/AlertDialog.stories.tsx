@@ -11,7 +11,7 @@ const meta: Meta<AlertDialogProps> = {
     title: 'Confirm Your Action',
     description:
       'Are you sure you want to proceed? This action cannot be undone.',
-    triggerText: 'Show Dialog',
+    triggerText: 'Take Action',
     cancelText: 'Cancel',
     confirmText: 'Continue',
   },

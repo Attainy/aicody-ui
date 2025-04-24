@@ -1,44 +1,59 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
-import { mergeClass } from '../../utils/mergeClass';
+import { twMerge } from 'tailwind-merge';
+import { triggerVariants, contentVariants } from './CollapsibleVariants';
+import type { CollapsibleProps } from './Collapsible.types';
 
-export const collapsibleVariants = tv({
-  base: 'w-full border rounded-md transition-colors',
-  variants: {
-    kind: {
-      primary:
-        'border-primary-main bg-primary-main/10 hover:bg-primary-main/20 text-primary-main',
-      secondary:
-        'border-secondary-main bg-secondary-main/10 hover:bg-secondary-main/20 text-secondary-main',
-      outline:
-        'border-primary-main bg-transparent hover:bg-primary-main/10 text-primary-main',
-      plain: 'border-none bg-transparent text-inherit hover:bg-transparent',
-    },
-    size: {
-      sm: 'p-2 text-sm',
-      md: 'p-4',
-      lg: 'p-6 text-lg',
-    },
-  },
-  defaultVariants: { kind: 'primary', size: 'md' },
-});
+export const Collapsible: React.FC<CollapsibleProps> = ({
+  kind = 'primary',
+  triggerText = 'Toggle Content',
+  children,
+}) => {
+  const [isOpen, setIsOpen] = React.useState(false);
 
-export type CollapsibleProps = Omit<
-  React.DetailsHTMLAttributes<HTMLDetailsElement>,
-  'open'
-> &
-  VariantProps<typeof collapsibleVariants>;
+  const handleToggle = () => setIsOpen((prev) => !prev);
 
-export const Collapsible = React.forwardRef<
-  HTMLDetailsElement,
-  CollapsibleProps
->(({ kind, size, className, children, ...props }, ref) => (
-  <details
-    ref={ref}
-    className={mergeClass(collapsibleVariants({ kind, size }), className)}
-    {...props}
-  >
-    {children}
-  </details>
-));
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={handleToggle}
+        className={twMerge(
+          'flex items-center justify-between w-full p-2 text-left rounded-md transition-colors',
+          triggerVariants({ kind })
+        )}
+        aria-expanded={isOpen}
+      >
+        <span>{triggerText}</span>
+        <svg
+          className={twMerge(
+            'w-4 h-4 transform transition-transform',
+            isOpen ? 'rotate-180' : ''
+          )}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+      {isOpen && (
+        <div
+          className={twMerge(
+            'mt-2 p-4 rounded-md transition-all duration-200',
+            contentVariants({ kind })
+          )}
+        >
+          {children}
+        </div>
+      )}
+    </div>
+  );
+};
+
 Collapsible.displayName = 'Collapsible';

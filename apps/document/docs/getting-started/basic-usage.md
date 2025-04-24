@@ -1,5 +1,7 @@
 ---
-sidebar_position: 2
+id: basic-usage
+title: basic-usage
+sidebar_label: basic-usage
 ---
 
 # Translate your site
