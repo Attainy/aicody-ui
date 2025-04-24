@@ -1,10 +1,13 @@
-// apps/document/tailwind.config.js
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  presets: [require('../../tailwind.config.js')],
+
   content: [
-    './src/**/*.{js,jsx,ts,tsx,mdx}', // Docusaurus src
-    '../../libs/react/src/**/*.{js,jsx,ts,tsx}', // monorepo lib
-    '../../node_modules/@aicody-ui/react/**/*.{js,jsx,ts,tsx}', // dist 버전
+    './src/**/*.{js,ts,jsx,tsx,md,mdx}',
+    '../../libs/react/src/**/*.{js,ts,jsx,tsx}',
+    '../../docs/**/*.mdx',
   ],
+
   theme: {
     extend: {},
   },
