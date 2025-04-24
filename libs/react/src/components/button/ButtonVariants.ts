@@ -1,21 +1,23 @@
 import { tv } from 'tailwind-variants';
 
 export const buttonVariants = tv({
-  base: 'inline-flex items-center justify-center rounded-md font-medium focus:outline-none transition-colors',
+  base: 'inline-flex items-center justify-center font-medium transition-colors focus:outline-none disabled:opacity-50 disabled:pointer-events-none border',
   variants: {
-    variant: {
-      default: 'bg-slate-900 text-white hover:bg-slate-960',
+    kind: {
+      primary:
+        'bg-primary-main text-white hover:bg-primary-sub focus:ring-primary-main',
+      secondary:
+        'bg-secondary-main text-white hover:bg-secondary-sub focus:ring-secondary-main',
       outline:
-        'border-solid border border-slate-900 text-slate-900 hover:bg-gray-100',
+        'bg-brand-white border-primary-main text-primary-main hover:bg-primary-main/10 focus:ring-primary-main',
+      plain:
+        'bg-brand-white border-brand-black text-brand-black hover:bg-brand-base focus:ring-0',
     },
     size: {
-      sm: 'px-2 py-1 text-sm',
-      md: 'px-4 py-2 text-base',
-      lg: 'px-6 py-3 text-lg',
+      sm: 'px-3 py-1 text-sm rounded',
+      md: 'px-4 py-2 text-md rounded-md',
+      lg: 'px-6 py-3 text-lg rounded-lg',
     },
   },
-  defaultVariants: {
-    variant: 'default',
-    size: 'md',
-  },
+  defaultVariants: { kind: 'primary', size: 'md' },
 });

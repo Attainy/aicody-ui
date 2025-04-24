@@ -1,24 +1,41 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, ButtonProps } from './Button';
-import { commonArgTypes } from '../argTypes';
+import { Button } from './Button';
+import { ButtonProps } from './button.types';
 
 const meta: Meta<ButtonProps> = {
   title: 'Components/Button',
   component: Button,
-  argTypes: commonArgTypes,
+  args: {
+    children: 'Button',
+    kind: 'primary',
+    size: 'md',
+  },
+  argTypes: {
+    kind: {
+      control: { type: 'select' },
+      options: ['primary', 'secondary', 'outline', 'plain'],
+    },
+    size: {
+      control: { type: 'inline-radio' },
+      options: ['sm', 'md', 'lg'],
+    },
+    children: { control: 'text' },
+  },
 };
 export default meta;
 
-type Story = StoryObj<ButtonProps>;
-export const Primary: Story = {
-  args: { kind: 'primary', size: 'md', children: '버튼' },
+// Playground 스토리는 삭제!
+// 네 개 스토리 모두 args를 상속받아 kind/size를 변경 가능
+export const Primary: StoryObj<ButtonProps> = {};
+
+export const Secondary: StoryObj<ButtonProps> = {
+  args: { kind: 'secondary' },
 };
-export const Secondary: Story = {
-  args: { kind: 'secondary', size: 'md', children: '버튼' },
+
+export const Outline: StoryObj<ButtonProps> = {
+  args: { kind: 'outline' },
 };
-export const Outline: Story = {
-  args: { kind: 'outline', size: 'md', children: '버튼' },
-};
-export const Plain: Story = {
-  args: { kind: 'plain', size: 'md', children: '버튼' },
+
+export const Plain: StoryObj<ButtonProps> = {
+  args: { kind: 'plain' },
 };
