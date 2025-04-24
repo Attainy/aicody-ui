@@ -1,6 +1,6 @@
 import React from 'react';
 import { profilePhotoVariants } from './ProfilePhotoVariants';
-import type { ProfilePhotoProps } from './profilePhoto.types';
+import type { ProfilePhotoProps } from './ProfilePhoto.types';
 import defaultProfilePhoto from './defaultProfilePhoto.png';
 import { twMerge } from 'tailwind-merge';
 

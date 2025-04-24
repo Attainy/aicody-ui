@@ -1,30 +1,39 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Checkbox, CheckboxProps } from './Checkbox';
-import { commonArgTypes } from '../argTypes';
+import { Checkbox } from './Checkbox';
+import type { CheckboxProps } from './Checkbox.types';
 
 const meta: Meta<CheckboxProps> = {
   title: 'Components/Checkbox',
   component: Checkbox,
-  argTypes: commonArgTypes,
+  args: {
+    kind: 'primary',
+    size: 'md',
+    label: 'Check me',
+  },
+  argTypes: {
+    kind: {
+      control: { type: 'select' },
+      options: ['primary', 'secondary', 'outline', 'plain'],
+    },
+    size: {
+      control: { type: 'inline-radio' },
+      options: ['sm', 'md', 'lg'],
+    },
+    label: { control: 'text' },
+  },
 };
 export default meta;
 
 type Story = StoryObj<CheckboxProps>;
 
-export const Default: Story = {
-  args: {
-    kind: 'primary',
-    size: 'md',
-    label: '체크박스 라벨',
-    checked: false,
-  },
+export const Primary: Story = {
+  args: { kind: 'primary' },
 };
 
-export const Checked: Story = {
-  args: {
-    kind: 'primary',
-    size: 'md',
-    label: '체크된 상태',
-    checked: true,
-  },
+export const Secondary: Story = {
+  args: { kind: 'secondary' },
+};
+
+export const Plain: Story = {
+  args: { kind: 'plain' },
 };

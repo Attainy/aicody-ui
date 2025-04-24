@@ -1,66 +1,82 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
-import { mergeClass } from '../../utils/mergeClass';
+import {
+  switchVariants,
+  switchThumbVariants,
+  labelVariants,
+} from './SwitchVariants';
+import type { SwitchProps } from './Switch.types';
+import { twMerge } from 'tailwind-merge';
 
-export const switchVariants = tv({
-  base: 'inline-flex items-center cursor-pointer transition-colors focus:outline-none',
-  variants: {
-    kind: {
-      primary: '',
-      secondary: '',
-      outline: '',
-      plain: '',
+export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
+  (
+    {
+      size = 'md',
+      kind = 'primary',
+      checked,
+      onCheckedChange,
+      className,
+      label,
+      id,
+      ...props
     },
-    size: {
-      sm: 'h-4 w-8',
-      md: 'h-5 w-10',
-      lg: 'h-6 w-12',
-    },
-  },
-  defaultVariants: {
-    kind: 'primary',
-    size: 'md',
-  },
-});
+    ref
+  ) => {
+    const [isChecked, setIsChecked] = React.useState(checked ?? false);
+    const switchId = id || `switch-${React.useId()}`; // 고유 ID 생성
 
-export interface SwitchProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof switchVariants> {
-  checked: boolean;
-  onCheckedChange?: (checked: boolean) => void;
-}
+    const isControlled = checked !== undefined;
+    const currentChecked = isControlled ? checked : isChecked;
 
-export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
-  ({ kind, size, checked, onCheckedChange, className, ...props }, ref) => {
-    const translate =
-      size === 'sm'
-        ? 'translate-x-4'
-        : size === 'lg'
-        ? 'translate-x-6'
-        : 'translate-x-5';
-    const reset = 'translate-x-1';
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newChecked = e.target.checked;
+      if (!isControlled) {
+        setIsChecked(newChecked);
+      }
+      onCheckedChange?.(newChecked);
+    };
+
     return (
-      <button
-        ref={ref}
-        role="switch"
-        aria-checked={checked}
-        onClick={() => onCheckedChange?.(!checked)}
-        className={mergeClass(
-          switchVariants({ kind, size }),
-          checked ? 'bg-primary-main' : 'bg-gray-200',
-          className
-        )}
-        {...props}
+      <label
+        htmlFor={switchId}
+        className="inline-flex items-center cursor-pointer"
       >
-        <span
-          className={mergeClass(
-            'bg-white rounded-full transition-transform',
-            size === 'sm' ? 'h-3 w-3' : size === 'lg' ? 'h-5 w-5' : 'h-4 w-4',
-            checked ? translate : reset
-          )}
+        <input
+          type="checkbox"
+          id={switchId}
+          ref={ref}
+          checked={currentChecked}
+          onChange={handleChange}
+          className="sr-only"
+          aria-label={props['aria-label'] ?? (label || 'Toggle switch')}
+          {...props}
         />
-      </button>
+        <span
+          className={twMerge(
+            'relative inline-flex items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer',
+            switchVariants({ size, kind, checked: currentChecked }),
+            className
+          )}
+        >
+          <span
+            className={twMerge(
+              'absolute left-0.5 bg-white rounded-full transition-transform duration-200 ease-in-out',
+              switchThumbVariants({ size, checked: currentChecked })
+            )}
+          />
+        </span>
+        {label && (
+          <span
+            className={twMerge(
+              'ml-2 text-sm font-medium text-brand-black',
+              labelVariants({ size })
+            )}
+          >
+            {label}
+          </span>
+        )}
+      </label>
     );
   }
 );
+
 Switch.displayName = 'Switch';

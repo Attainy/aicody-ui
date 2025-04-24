@@ -1,38 +1,79 @@
 import React from 'react';
-import { mergeClass } from '../../utils/mergeClass';
-import { tv, VariantProps } from 'tailwind-variants';
+import {
+  dialogVariants,
+  dialogContentVariants,
+  dialogTitleVariants,
+  dialogDescriptionVariants,
+  dialogButtonVariants,
+  triggerButtonVariants,
+} from './AlertDialogVariants';
+import type { AlertDialogProps } from './AlertDialog.types';
+import { twMerge } from 'tailwind-merge';
 
-export const alertVariants = tv({
-  base: 'w-full rounded-md border-l-4 transition-colors',
-  variants: {
-    kind: {
-      primary: 'border-primary-main bg-primary-main/10 text-primary-main',
-      secondary:
-        'border-secondary-main bg-secondary-main/10 text-secondary-main',
-      outline:
-        'border-primary-main bg-transparent text-primary-main hover:bg-primary-main/10',
-      plain: 'border-none bg-transparent text-inherit',
-    },
-    size: {
-      sm: 'p-2 text-sm',
-      md: 'p-4',
-      lg: 'p-6 text-lg',
-    },
-  },
-  defaultVariants: { kind: 'primary', size: 'md' },
-});
+const defaultAlertDialogProps = {
+  kind: 'primary' as const,
+  title: 'Are you absolutely sure?',
+  description:
+    'This action cannot be undone. This will permanently delete your account and remove your data from our servers.',
+  triggerText: 'Show Dialog',
+  cancelText: 'Cancel',
+  confirmText: 'Continue',
+};
 
-export type AlertDialogProps = React.HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof alertVariants>;
+export const AlertDialog: React.FC<AlertDialogProps> = ({
+  kind,
+  title,
+  description,
+  triggerText,
+  cancelText,
+  confirmText,
+  onConfirm,
+}: defaultAlertDialogProps) => {
+  const [isOpen, setIsOpen] = React.useState(false);
 
-export const AlertDialog = React.forwardRef<HTMLDivElement, AlertDialogProps>(
-  ({ kind, size, className, ...props }, ref) => (
-    <div
-      ref={ref}
-      role="alert"
-      className={mergeClass(alertVariants({ kind, size }), className)}
-      {...props}
-    />
-  )
-);
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
+  const handleConfirm = () => {
+    onConfirm?.();
+    handleClose();
+  };
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={handleOpen}
+        className={triggerButtonVariants()}
+      >
+        {triggerText}
+      </button>
+
+      {isOpen && (
+        <div className={dialogVariants()}>
+          <div className={dialogContentVariants()}>
+            <h2 className={dialogTitleVariants()}>{title}</h2>
+            <p className={dialogDescriptionVariants()}>{description}</p>
+            <div className="flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={handleClose}
+                className={dialogButtonVariants({ type: 'cancel', kind })}
+              >
+                {cancelText}
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirm}
+                className={dialogButtonVariants({ type: 'confirm', kind })}
+              >
+                {confirmText}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
 AlertDialog.displayName = 'AlertDialog';

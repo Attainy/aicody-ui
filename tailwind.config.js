@@ -4,6 +4,7 @@ module.exports = {
     'libs/react/src/**/*.{js,ts,jsx,tsx,css}',
     'libs/react/.storybook/**/*.{js,ts,jsx,tsx,css}',
   ],
+  safelist: ['aspect-[1/1]', 'aspect-[16/9]', 'aspect-[4/3]'],
   theme: {
     extend: {
       colors: {

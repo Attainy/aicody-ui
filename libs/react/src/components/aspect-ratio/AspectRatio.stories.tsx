@@ -1,39 +1,35 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { AspectRatio } from './AspectRatio';
 import type { AspectRatioProps } from './AspectRatio.types';
+import defaultAspectRatioImage from './defaultAspectRatio.jpg';
 
 const meta: Meta<AspectRatioProps> = {
   title: 'Components/AspectRatio',
   component: AspectRatio,
+  decorators: [
+    (Story) => (
+      <div style={{ width: 300, border: '1px solid #ddd' }}>
+        <Story />
+      </div>
+    ),
+  ],
   args: {
     ratio: 'video',
+    defaultImage: defaultAspectRatioImage,
   },
   argTypes: {
     ratio: {
       control: { type: 'select' },
       options: ['square', 'video', 'photo'],
     },
-    defaultImage: { control: 'text' },
+    defaultImage: { control: { type: 'file' } },
+    children: { control: { type: 'text' } },
   },
 };
 export default meta;
 
-export const Square: StoryObj<AspectRatioProps> = {
-  args: {},
-};
-export const Video: StoryObj<AspectRatioProps> = {
-  args: { ratio: 'video' },
-};
-export const Photo: StoryObj<AspectRatioProps> = {
-  args: { ratio: 'photo' },
-};
-export const WithChildren: StoryObj<AspectRatioProps> = {
-  args: {
-    children: (
-      <div className="flex items-center justify-center h-full">Content</div>
-    ),
-  },
-};
-export const WithoutChildren: StoryObj<AspectRatioProps> = {
-  args: {},
-};
+export const Square: StoryObj<AspectRatioProps> = {};
+export const Video: StoryObj<AspectRatioProps> = { args: { ratio: 'video' } };
+export const Photo: StoryObj<AspectRatioProps> = { args: { ratio: 'photo' } };
+
+export const WithoutChildren: StoryObj<AspectRatioProps> = {};

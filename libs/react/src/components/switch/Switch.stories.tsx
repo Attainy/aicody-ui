@@ -1,31 +1,58 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Switch, SwitchProps } from './Switch';
-import { commonArgTypes } from '../argTypes';
+import { Switch } from './Switch';
+import type { SwitchProps } from './Switch.types';
 
 const meta: Meta<SwitchProps> = {
   title: 'Components/Switch',
   component: Switch,
-  argTypes: {
-    checked: { control: 'boolean' },
-    ...commonArgTypes,
+  args: {
+    size: 'md',
+    kind: 'primary',
   },
+  argTypes: {
+    kind: {
+      control: { type: 'select' },
+      options: ['primary', 'secondary', 'plain'],
+    },
+    size: {
+      control: { type: 'inline-radio' },
+      options: ['sm', 'md', 'lg'],
+    },
+    checked: {
+      control: { type: 'boolean' },
+    },
+    label: {
+      control: { type: 'text' },
+    },
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '20px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
+
 export default meta;
 
-type Story = StoryObj<SwitchProps>;
-
-export const Off: Story = {
+export const Primary: StoryObj<SwitchProps> = {
   args: {
     kind: 'primary',
-    size: 'md',
-    checked: false,
+    label: 'Primary Switch',
   },
 };
 
-export const On: Story = {
+export const Secondary: StoryObj<SwitchProps> = {
   args: {
-    kind: 'primary',
-    size: 'md',
-    checked: true,
+    kind: 'secondary',
+    label: 'Secondary Switch',
+  },
+};
+
+export const Plain: StoryObj<SwitchProps> = {
+  args: {
+    kind: 'plain',
+    label: 'Plain Switch',
   },
 };

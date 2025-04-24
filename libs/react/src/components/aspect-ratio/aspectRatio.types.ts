@@ -2,7 +2,10 @@ import React from 'react';
 import { VariantProps } from 'tailwind-variants';
 import { aspectRatioVariants } from './AspectRatioVariants';
 
-export type AspectRatioProps = React.HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof aspectRatioVariants> & {
-    defaultImage?: string;
-  };
+export type Ratio = 'square' | 'video' | 'photo';
+
+export interface AspectRatioProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    Partial<VariantProps<typeof aspectRatioVariants>> {
+  defaultImage?: string;
+}
