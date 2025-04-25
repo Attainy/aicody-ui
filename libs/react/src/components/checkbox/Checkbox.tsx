@@ -4,48 +4,69 @@ import { CheckboxProps } from './Checkbox.types';
 import { checkboxInputVariants } from './CheckboxVariants';
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ kind, size, label, className, ...props }, ref) => (
-    <label
-      className={twMerge(
-        'inline-flex items-center gap-2 cursor-pointer text-brand-black',
-        checkboxInputVariants({ size }),
-        className
-      )}
-    >
-      <input
-        type="checkbox"
+  (
+    {
+      kind = 'primary',
+      size = 'md',
+      shape = 'rounded',
+      label,
+      className,
+      disabled,
+      checked,
+      onChange,
+      ...props
+    },
+    ref
+  ) => {
+    const [isChecked, setIsChecked] = React.useState(checked ?? false);
+    const checkboxId = React.useId(); // 고유 ID 생성
+
+    const isControlled = checked !== undefined;
+    const currentChecked = isControlled ? checked : isChecked;
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (disabled) return; // 비활성화 시 동작 방지
+      const newChecked = e.target.checked;
+      if (!isControlled) {
+        setIsChecked(newChecked);
+      }
+      onChange?.(e);
+    };
+
+    return (
+      <label
+        htmlFor={checkboxId}
         className={twMerge(
-          'appearance-none h-5 w-5 border-2 rounded',
-          // unchecked
-          'border-secondary-main',
-          // checked: 배경색, 테두리, 그리고 흰색 SVG 체크 아이콘
-          'checked:bg-secondary-main checked:border-secondary-main',
-          `checked:bg-[url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="white" d="M6 10l-3-3 1-1 2 2 4-4 1 1z"/></svg>')]`,
-          'bg-center bg-no-repeat transition-colors'
-          // checkboxInputVariants({ kind, size })
-        )}
-        {...props}
-      />
-      <input type="checkbox" className="sr-only peer" />
-      <span
-        className={twMerge(
-          'inline-block h-5 w-5 border-2 rounded',
-          'border-secondary-main peer-checked:bg-secondary-main peer-checked:border-secondary-main',
-          // 체크됐을 때 자식 SVG를 보이게
-          'relative'
+          'inline-flex items-center gap-2',
+          disabled ? 'cursor-not-allowed' : 'cursor-pointer',
+          'text-brand-black'
         )}
       >
-        <svg
-          className="hidden peer-checked:block absolute inset-0 m-auto h-3 w-3 text-white"
-          viewBox="0 0 16 16"
-          fill="currentColor"
-        >
-          <path d="M6 10l-3-3 1-1 2 2 4-4 1 1z" />
-        </svg>
-      </span>
-      {label && <span>{label}</span>}
-    </label>
-  )
+        <input
+          type="checkbox"
+          id={checkboxId}
+          ref={ref}
+          checked={currentChecked}
+          onChange={handleChange}
+          className={twMerge(
+            'appearance-none relative inline-flex items-center justify-center',
+            'border border-brand-black transition-colors duration-200',
+            'focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-1',
+            checkboxInputVariants({ kind, size, shape, disabled }),
+            className
+          )}
+          disabled={disabled}
+          aria-checked={currentChecked}
+          aria-label={
+            props['aria-label'] ??
+            (typeof label === 'string' ? label : 'Checkbox')
+          }
+          {...props}
+        />
+        {label && <span>{label}</span>}
+      </label>
+    );
+  }
 );
 
 Checkbox.displayName = 'Checkbox';

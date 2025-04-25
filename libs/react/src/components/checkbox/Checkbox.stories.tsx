@@ -12,28 +12,85 @@ const meta: Meta<CheckboxProps> = {
   },
   argTypes: {
     kind: {
-      control: { type: 'select' },
+      control: { type: 'inline-radio' },
       options: ['primary', 'secondary', 'outline', 'plain'],
     },
     size: {
       control: { type: 'inline-radio' },
       options: ['sm', 'md', 'lg'],
     },
+    shape: {
+      control: { type: 'inline-radio' },
+      options: ['rounded', 'square'],
+    },
     label: { control: 'text' },
+    checked: { control: 'boolean' },
+    disabled: { control: 'boolean' },
   },
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '20px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
+
 export default meta;
 
-type Story = StoryObj<CheckboxProps>;
-
-export const Primary: Story = {
-  args: { kind: 'primary' },
+export const Primary: StoryObj<CheckboxProps> = {
+  args: {
+    kind: 'primary',
+    size: 'md',
+    shape: 'rounded',
+  },
 };
 
-export const Secondary: Story = {
-  args: { kind: 'secondary' },
+export const Secondary: StoryObj<CheckboxProps> = {
+  args: {
+    kind: 'secondary',
+    size: 'md',
+    shape: 'rounded',
+  },
 };
 
-export const Plain: Story = {
-  args: { kind: 'plain' },
+export const Outline: StoryObj<CheckboxProps> = {
+  args: {
+    kind: 'outline',
+    size: 'md',
+    shape: 'rounded',
+  },
+};
+
+export const Plain: StoryObj<CheckboxProps> = {
+  args: {
+    kind: 'plain',
+    size: 'md',
+    shape: 'rounded',
+  },
+};
+
+export const Checked: StoryObj<CheckboxProps> = {
+  args: {
+    checked: true,
+    size: 'md',
+    shape: 'rounded',
+  },
+};
+
+export const Disabled: StoryObj<CheckboxProps> = {
+  args: {
+    disabled: true,
+    size: 'md',
+    shape: 'rounded',
+  },
+};
+
+export const DisabledChecked: StoryObj<CheckboxProps> = {
+  args: {
+    disabled: true,
+    checked: true,
+    size: 'md',
+    shape: 'rounded',
+  },
 };
