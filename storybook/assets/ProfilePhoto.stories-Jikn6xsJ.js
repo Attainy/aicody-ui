@@ -1,8 +1,0 @@
-import{j as a}from"./jsx-runtime-BO8uF4Og.js";import{R as h}from"./index-D4H_InIO.js";import{c as g,t as P}from"./index-DJ26ghjZ.js";const x=g({variants:{size:{sm:"h-8 w-8 text-sm",md:"h-10 w-10 text-md",lg:"h-14 w-14 text-lg"}},defaultVariants:{size:"md"}}),w=""+new URL("defaultProfilePhoto-CtzsPMki.png",import.meta.url).href,r=h.forwardRef(({size:p="md",className:d,...t},f)=>{const u=t.src??w;return a.jsx("div",{ref:f,className:P("relative inline-block overflow-hidden rounded-full bg-brand-gray",x({size:p}),d),children:a.jsx("img",{...t,src:u,alt:t.alt??"Profile photo",className:"h-full w-full object-cover"})})});r.displayName="ProfilePhoto";r.__docgenInfo={description:"",methods:[],displayName:"ProfilePhoto",props:{size:{defaultValue:{value:"'md'",computed:!1},required:!1}}};const b={title:"Components/ProfilePhoto",component:r,args:{size:"md"},argTypes:{size:{control:{type:"inline-radio"},options:["sm","md","lg"]},src:{control:{type:"text"}},alt:{control:{type:"text"}}}},e={args:{src:"https://cdn.pixabay.com/photo/2023/03/31/05/52/avatar-7889246_1280.jpg",alt:"Profile photo"}},o={args:{}};var s,l,c;e.parameters={...e.parameters,docs:{...(s=e.parameters)==null?void 0:s.docs,source:{originalSource:`{
-  args: {
-    src: 'https://cdn.pixabay.com/photo/2023/03/31/05/52/avatar-7889246_1280.jpg',
-    alt: 'Profile photo'
-  }
-}`,...(c=(l=e.parameters)==null?void 0:l.docs)==null?void 0:c.source}}};var n,i,m;o.parameters={...o.parameters,docs:{...(n=o.parameters)==null?void 0:n.docs,source:{originalSource:`{
-  args: {}
-}`,...(m=(i=o.parameters)==null?void 0:i.docs)==null?void 0:m.source}}};const z=["Image","Default"];export{o as Default,e as Image,z as __namedExportsOrder,b as default};
