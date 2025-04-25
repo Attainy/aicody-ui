@@ -6,13 +6,20 @@
 
 <p align="center">
   <strong>현대적이고 접근성 높은 React 컴포넌트 라이브러리</strong><br/>
-  Tailwind CSS를 기반으로 스타일링된 다양한 UI 컴포넌트를 제공하며, 모노레포 구조를 통해 효율적인 개발과 유지보수를 지원합니다.
+  Tailwind CSS를 기반으로 스타일링된 다양한 UI 컴포넌트를 제공하며, <br />
+  모노레포 구조를 통해 효율적인 개발과 유지보수를 지원합니다.
 </p>
 
-<p align="center">
-  <a href="https://attainy.github.io/aicody-ui/"><strong>📘 공식 기술 문서</strong></a> •
-  <a href="https://attainy.github.io/aicody-ui/storybook"><strong>🎮 데모 체험하기 (Storybook)</strong></a>
-</p>
+<div style="border: 1px solid #ddd; padding: 10px; max-width: 500px;">
+  <h3><a href="https://attainy.github.io/aicody-ui/">📘 공식 기술 문서</a></h3>
+  <a href="https://attainy.github.io/aicody-ui/">https://attainy.github.io/aicody-ui/</a>
+</div>
+
+<div style="border: 1px solid #ddd; padding: 10px; max-width: 500px;">
+  <h3><a href="https://attainy.github.io/aicody-ui/storybook">🎮 데모 체험하기</a></h3>
+  <a href="https://attainy.github.io/aicody-ui/storybook">https://attainy.github.io/aicody-ui/storybook</a>
+</div>
+
 
 ---
 
