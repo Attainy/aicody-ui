@@ -1,38 +1,20 @@
 import { tv } from 'tailwind-variants';
 
 export const triggerVariants = tv({
+  base: 'flex items-center justify-between w-full px-4 py-2 rounded-md transition-colors cursor-pointer',
   variants: {
     kind: {
       primary:
-        'border-primary-main text-primary-main hover:bg-primary-base hover:border-primary-base',
+        'bg-primary-base text-primary-main hover:bg-primary-main hover:text-white',
       secondary:
-        'border-secondary-main text-secondary-main hover:bg-secondary-base hover:border-secondary-base',
-      outline: 'border-brand-black text-brand-black hover:bg-brand-base',
-      plain:
-        'border-brand-black text-brand-black hover:bg-brand-base hover:border-brand-base',
+        'bg-secondary-base text-secondary-main hover:bg-secondary-main hover:text-white',
+      plain: 'bg-gray-100 text-gray-800 hover:bg-gray-200',
     },
     isOpen: {
-      true: '',
+      true: 'rounded-b-none',
       false: '',
     },
   },
-  compoundVariants: [
-    {
-      kind: 'primary',
-      isOpen: true,
-      class: 'bg-primary-base border-primary-base',
-    },
-    {
-      kind: 'secondary',
-      isOpen: true,
-      class: 'bg-secondary-base border-secondary-base',
-    },
-    {
-      kind: 'plain',
-      isOpen: true,
-      class: 'bg-brand-base border-brand-base',
-    },
-  ],
   defaultVariants: {
     kind: 'primary',
     isOpen: false,
@@ -40,17 +22,16 @@ export const triggerVariants = tv({
 });
 
 export const contentVariants = tv({
-  base: 'absolute top-full left-0 mt-2 px-3 py-2 rounded-md transition-all duration-200 ease-in-out overflow-hidden border', // 애니메이션 속성 추가
+  base: 'transition-all duration-300 ease-in-out overflow-hidden',
   variants: {
     kind: {
-      primary: 'border-primary-base',
-      secondary: 'border-secondary-base',
-      outline: 'border-brand-gray',
-      plain: 'border-brand-base',
+      primary: 'bg-white border border-primary-base',
+      secondary: 'bg-white border border-secondary-base',
+      plain: 'bg-white border border-brand-base',
     },
     isOpen: {
-      true: 'opacity-100 mt-2',
-      false: 'max-h-0 opacity-0 -mt-2',
+      true: 'opacity-100',
+      false: 'opacity-0 max-h-0',
     },
   },
   defaultVariants: {

@@ -17,7 +17,7 @@ const meta: Meta<AlertDialogProps> = {
   },
   argTypes: {
     kind: {
-      control: { type: 'select' },
+      control: { type: 'inline-radio' },
       options: ['primary', 'secondary', 'outline', 'plain'],
     },
     size: {

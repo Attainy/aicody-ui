@@ -1,57 +1,64 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { triggerVariants, contentVariants } from './CollapsibleVariants';
 import type { CollapsibleProps } from './Collapsible.types';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 export const Collapsible: React.FC<CollapsibleProps> = ({
-  kind = 'primary',
   triggerText = 'Toggle Content',
   children,
+  defaultOpen = false,
+  kind = 'primary',
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [contentHeight, setContentHeight] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const collapsibleId = React.useId();
 
-  const handleToggle = () => setIsOpen((prev) => !prev);
+  const toggleOpen = () => setIsOpen((prev) => !prev);
+
+  // 콘텐츠 높이 동적 계산
+  useEffect(() => {
+    if (contentRef.current) {
+      setContentHeight(contentRef.current.scrollHeight);
+    }
+  }, [children, isOpen]);
 
   return (
-    <div>
-      <button
-        type="button"
-        onClick={handleToggle}
-        className={twMerge(
-          'flex items-center justify-between w-full p-2 text-left rounded-md transition-colors',
-          triggerVariants({ kind })
-        )}
+    <div className="w-[500px]">
+      <div
+        onClick={toggleOpen}
+        className={twMerge(triggerVariants({ kind, isOpen }))}
+        role="button"
         aria-expanded={isOpen}
+        aria-controls={`${collapsibleId}-content`}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleOpen();
+          }
+        }}
       >
         <span>{triggerText}</span>
-        <svg
-          className={twMerge(
-            'w-4 h-4 transform transition-transform',
-            isOpen ? 'rotate-180' : ''
-          )}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </button>
-      {isOpen && (
-        <div
-          className={twMerge(
-            'mt-2 p-4 rounded-md transition-all duration-200',
-            contentVariants({ kind })
-          )}
-        >
-          {children}
-        </div>
-      )}
+        {isOpen ? (
+          <ChevronUp className="h-5 w-5" />
+        ) : (
+          <ChevronDown className="h-5 w-5" />
+        )}
+      </div>
+      <div
+        ref={contentRef}
+        className={twMerge(contentVariants({ kind, isOpen }))}
+        style={{
+          maxHeight: isOpen ? `${contentHeight}px` : '0px',
+        }}
+        id={`${collapsibleId}-content`}
+        role="region"
+        aria-labelledby={collapsibleId}
+      >
+        <div className="px-4 py-2">{children}</div>
+      </div>
     </div>
   );
 };

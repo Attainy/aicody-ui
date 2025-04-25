@@ -1,6 +1,13 @@
+export interface AccordionItem {
+  id: string;
+  triggerText: string;
+  content: React.ReactNode;
+}
+
 export interface AccordionProps {
-  kind?: 'primary' | 'secondary' | 'outline' | 'plain';
-  triggerText?: string;
-  children?: React.ReactNode;
-  id?: string;
+  kind?: 'primary' | 'secondary' | 'plain';
+  items: AccordionItem[];
+  value?: string;
+  onValueChange?: (value: string) => void;
+  defaultValue?: string;
 }

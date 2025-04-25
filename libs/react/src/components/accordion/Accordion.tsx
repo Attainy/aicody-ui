@@ -6,50 +6,97 @@ import { ChevronUp, ChevronDown } from 'lucide-react';
 
 export const Accordion: React.FC<AccordionProps> = ({
   kind = 'primary',
-  triggerText = 'Toggle Content',
-  children,
-  id,
-  ...props
+  items,
+  value,
+  onValueChange,
+  defaultValue,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [contentHeight, setContentHeight] = useState(0);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const accordionId = id || `accordion-${React.useId()}`;
+  const [openSection, setOpenSection] = useState<string | undefined>(
+    defaultValue ?? undefined
+  );
+  const contentRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+  const [sectionHeights, setSectionHeights] = useState<Map<string, number>>(
+    new Map()
+  );
 
-  const handleToggle = () => setIsOpen((prev) => !prev);
+  const isControlled = value !== undefined;
+  const currentOpenSection = isControlled ? value : openSection;
 
-  useEffect(() => {
-    if (contentRef.current) {
-      setContentHeight(contentRef.current.scrollHeight);
+  const handleToggle = (itemId: string) => {
+    const newValue = currentOpenSection === itemId ? undefined : itemId;
+    if (!isControlled) {
+      setOpenSection(newValue);
     }
-  }, [children, isOpen]);
+    onValueChange?.(newValue ?? '');
+  };
+
+  // 콘텐츠 높이 동적 계산
+  useEffect(() => {
+    const newHeights = new Map<string, number>();
+    contentRefs.current.forEach((ref, id) => {
+      if (ref) {
+        newHeights.set(id, ref.scrollHeight);
+      }
+    });
+    setSectionHeights(newHeights);
+  }, [items]);
 
   return (
-    <div className="relative" {...props}>
-      <div
-        onClick={handleToggle}
-        className={twMerge(
-          'flex items-center justify-between w-[500px] px-3 py-2 rounded-md transition-colors gap-2 border cursor-pointer',
-          triggerVariants({ kind, isOpen })
-        )}
-        aria-expanded={isOpen}
-        aria-controls={`${accordionId}-content`}
-      >
-        <div>{triggerText}</div>
-        {isOpen ? <ChevronUp /> : <ChevronDown />}
-      </div>
-      <div
-        ref={contentRef}
-        className={twMerge(contentVariants({ kind, isOpen }))}
-        style={{
-          maxHeight: isOpen ? `${contentHeight}px` : '0px',
-        }}
-        id={`${accordionId}-content`}
-        role="region"
-        aria-labelledby={accordionId}
-      >
-        {children}
-      </div>
+    <div className="w-[500px] space-y-2">
+      {items.map((item) => {
+        const isSectionOpen = currentOpenSection === item.id;
+        const sectionId = `accordion-${item.id}-${React.useId()}`;
+
+        return (
+          <div key={item.id}>
+            <div
+              onClick={() => handleToggle(item.id)}
+              className={twMerge(
+                triggerVariants({ kind, isOpen: isSectionOpen })
+              )}
+              role="button"
+              aria-expanded={isSectionOpen}
+              aria-controls={`${sectionId}-content`}
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleToggle(item.id);
+                }
+              }}
+            >
+              <span>{item.triggerText}</span>
+              {isSectionOpen ? (
+                <ChevronUp className="h-5 w-5" />
+              ) : (
+                <ChevronDown className="h-5 w-5" />
+              )}
+            </div>
+            <div
+              ref={(el) => {
+                if (el) {
+                  contentRefs.current.set(item.id, el);
+                } else {
+                  contentRefs.current.delete(item.id);
+                }
+              }}
+              className={twMerge(
+                contentVariants({ kind, isOpen: isSectionOpen })
+              )}
+              style={{
+                maxHeight: isSectionOpen
+                  ? `${sectionHeights.get(item.id) ?? 0}px`
+                  : '0px',
+              }}
+              id={`${sectionId}-content`}
+              role="region"
+              aria-labelledby={sectionId}
+            >
+              <div className="px-4 py-2">{item.content}</div>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };

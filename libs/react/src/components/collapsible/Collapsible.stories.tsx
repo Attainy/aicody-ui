@@ -6,21 +6,25 @@ const meta: Meta<CollapsibleProps> = {
   title: 'Components/Collapsible',
   component: Collapsible,
   args: {
-    kind: 'primary',
     triggerText: 'Toggle Content',
     children:
-      'This is the collapsible content. You can toggle it by clicking the trigger button.',
+      'This is the collapsible content. Click the trigger to toggle visibility.',
+    kind: 'primary',
+    defaultOpen: false,
   },
   argTypes: {
     kind: {
-      control: { type: 'select' },
-      options: ['primary', 'secondary', 'outline', 'plain'],
+      control: { type: 'inline-radio' },
+      options: ['primary', 'secondary', 'plain'],
     },
     triggerText: {
       control: { type: 'text' },
     },
     children: {
       control: { type: 'text' },
+    },
+    defaultOpen: {
+      control: { type: 'boolean' },
     },
   },
   decorators: [
@@ -46,14 +50,30 @@ export const Secondary: StoryObj<CollapsibleProps> = {
   },
 };
 
-export const Outline: StoryObj<CollapsibleProps> = {
-  args: {
-    kind: 'outline',
-  },
-};
-
 export const Plain: StoryObj<CollapsibleProps> = {
   args: {
     kind: 'plain',
   },
+};
+
+export const DefaultOpen: StoryObj<CollapsibleProps> = {
+  args: {
+    defaultOpen: true,
+  },
+};
+
+export const MultipleCollapsible: StoryObj<CollapsibleProps> = {
+  render: () => (
+    <div className="space-y-4">
+      <Collapsible triggerText="Section 1" kind="plain" defaultOpen={true}>
+        Content for Section 1
+      </Collapsible>
+      <Collapsible triggerText="Section 2" kind="plain" defaultOpen={false}>
+        Content for Section 2
+      </Collapsible>
+      <Collapsible triggerText="Section 3" kind="plain" defaultOpen={false}>
+        Content for Section 3
+      </Collapsible>
+    </div>
+  ),
 };

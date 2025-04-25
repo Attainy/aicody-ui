@@ -19,7 +19,7 @@ const meta: Meta<AspectRatioProps> = {
   },
   argTypes: {
     ratio: {
-      control: { type: 'select' },
+      control: { type: 'inline-radio' },
       options: ['square', 'video', 'photo'],
     },
     defaultImage: { control: { type: 'file' } },

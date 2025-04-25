@@ -7,19 +7,37 @@ const meta: Meta<AccordionProps> = {
   component: Accordion,
   args: {
     kind: 'primary',
-    triggerText: 'Toggle Content',
-    children:
-      'This is the accordion content. You can toggle it by clicking the trigger button.',
+    items: [
+      {
+        id: 'section-1',
+        triggerText: 'Section 1',
+        content:
+          'Content for Section 1. Click the trigger to toggle visibility.',
+      },
+      {
+        id: 'section-2',
+        triggerText: 'Section 2',
+        content:
+          'Content for Section 2. Click the trigger to toggle visibility.',
+      },
+      {
+        id: 'section-3',
+        triggerText: 'Section 3',
+        content:
+          'Content for Section 3. Click the trigger to toggle visibility.',
+      },
+    ],
+    defaultValue: 'section-1',
   },
   argTypes: {
     kind: {
-      control: { type: 'select' },
-      options: ['primary', 'secondary', 'outline', 'plain'],
+      control: { type: 'inline-radio' },
+      options: ['primary', 'secondary', 'plain'],
     },
-    triggerText: {
-      control: { type: 'text' },
+    items: {
+      control: { type: 'object' },
     },
-    children: {
+    defaultValue: {
       control: { type: 'text' },
     },
   },
@@ -43,12 +61,6 @@ export const Primary: StoryObj<AccordionProps> = {
 export const Secondary: StoryObj<AccordionProps> = {
   args: {
     kind: 'secondary',
-  },
-};
-
-export const Outline: StoryObj<AccordionProps> = {
-  args: {
-    kind: 'outline',
   },
 };
 
