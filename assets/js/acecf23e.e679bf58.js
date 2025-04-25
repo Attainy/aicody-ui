@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocument=self.webpackChunkdocument||[]).push([[1903],{1912:o=>{o.exports=JSON.parse('{"blogBasePath":"/aicody-ui/blog","blogTitle":"Blog","authorsListPath":"/aicody-ui/blog/authors"}')}}]);
