@@ -58,6 +58,12 @@ const config: Config = {
           label: 'Docs',
         },
         {
+          type: 'doc',
+          docId: 'components/accordion',
+          position: 'left',
+          label: 'Components',
+        },
+        {
           href: 'https://github.com/aicody/aicody-ui',
           label: 'GitHub',
           position: 'right',
