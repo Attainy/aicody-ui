@@ -21,6 +21,9 @@ module.exports = {
         'secondary-sub': '#4ac6ff',
         'secondary-base': '#e5f6ff',
       },
+      boxShadow: {
+        'ring-bottom': '0 1px 0 0 #1a1a1a', // 하단에만 링 효과
+      },
     },
   },
   plugins: [],

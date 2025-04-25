@@ -3,6 +3,9 @@ export interface SwitchProps
   size?: 'sm' | 'md' | 'lg';
   kind?: 'primary' | 'secondary' | 'plain';
   checked?: boolean;
-  onCheckedChange?: (checked: boolean) => void;
+  onCheckedChange?: (
+    checked: boolean,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
   label?: string;
 }

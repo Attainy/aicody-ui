@@ -1,19 +1,29 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ContextMenu, ContextMenuProps } from './ContextMenu';
-import { commonArgTypes } from '../argTypes';
+import { ContextMenu } from './ContextMenu';
+import type { ContextMenuProps } from './Contextmenu.types';
 
 const meta: Meta<ContextMenuProps> = {
   title: 'Components/ContextMenu',
   component: ContextMenu,
-  argTypes: commonArgTypes,
+  args: {
+    triggerText: 'Right-click here',
+  },
+  argTypes: {
+    triggerText: {
+      control: { type: 'text' },
+    },
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '20px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
+
 export default meta;
 
 export const Default: StoryObj<ContextMenuProps> = {
-  args: {
-    kind: 'primary',
-    size: 'md',
-    children: <div className="p-2">메뉴 항목</div>,
-  },
+  args: {},
 };

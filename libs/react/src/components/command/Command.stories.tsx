@@ -1,15 +1,43 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Command, CommandProps } from './Command';
-import { commonArgTypes } from '../argTypes';
+import { Command } from './Command';
+import type { CommandProps } from './Command.types';
 
 const meta: Meta<CommandProps> = {
   title: 'Components/Command',
   component: Command,
-  argTypes: commonArgTypes,
+  args: {
+    suggestions: [
+      {
+        id: '1',
+        label: 'Open Dashboard',
+        action: () => alert('Opening Dashboard'),
+      },
+      {
+        id: '2',
+        label: 'Search Users',
+        action: () => alert('Searching Users'),
+      },
+      { id: '3', label: 'Settings', action: () => alert('Opening Settings') },
+      { id: '4', label: 'Logout', action: () => alert('Logging out') },
+    ],
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '20px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
+
 export default meta;
 
 export const Default: StoryObj<CommandProps> = {
-  args: { kind: 'primary', size: 'md', children: <div>명령어 아이템</div> },
+  args: {},
+};
+
+export const Empty: StoryObj<CommandProps> = {
+  args: {
+    suggestions: [],
+  },
 };

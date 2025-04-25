@@ -40,12 +40,17 @@ export const triggerVariants = tv({
 });
 
 export const contentVariants = tv({
+  base: 'absolute top-full left-0 mt-2 px-3 py-2 rounded-md transition-all duration-200 ease-in-out overflow-hidden border', // 애니메이션 속성 추가
   variants: {
     kind: {
       primary: 'border-primary-base',
       secondary: 'border-secondary-base',
-      outline: 'border-brand-ㅆgray',
+      outline: 'border-brand-gray',
       plain: 'border-brand-base',
+    },
+    isOpen: {
+      true: 'opacity-100 mt-2',
+      false: 'max-h-0 opacity-0 -mt-2',
     },
   },
   defaultVariants: {

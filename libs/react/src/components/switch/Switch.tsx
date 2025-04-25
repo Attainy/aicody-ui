@@ -17,6 +17,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
       className,
       label,
       id,
+      disabled,
       ...props
     },
     ref
@@ -28,17 +29,21 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
     const currentChecked = isControlled ? checked : isChecked;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (disabled) return; // 비활성화 시 동작 방지
       const newChecked = e.target.checked;
       if (!isControlled) {
         setIsChecked(newChecked);
       }
-      onCheckedChange?.(newChecked);
+      onCheckedChange?.(newChecked, e);
     };
 
     return (
       <label
         htmlFor={switchId}
-        className="inline-flex items-center cursor-pointer"
+        className={twMerge(
+          'inline-flex items-center',
+          disabled ? 'cursor-not-allowed' : 'cursor-pointer'
+        )}
       >
         <input
           type="checkbox"
@@ -47,19 +52,21 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           checked={currentChecked}
           onChange={handleChange}
           className="sr-only"
+          disabled={disabled}
+          aria-checked={currentChecked}
           aria-label={props['aria-label'] ?? (label || 'Toggle switch')}
           {...props}
         />
         <span
           className={twMerge(
-            'relative inline-flex items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer',
-            switchVariants({ size, kind, checked: currentChecked }),
+            'relative inline-flex items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2',
+            switchVariants({ size, kind, checked: currentChecked, disabled }),
             className
           )}
         >
           <span
             className={twMerge(
-              'absolute left-0.5 bg-white rounded-full transition-transform duration-200 ease-in-out',
+              'absolute bg-white rounded-full transition-transform duration-200 ease-in-out',
               switchThumbVariants({ size, checked: currentChecked })
             )}
           />

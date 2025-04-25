@@ -26,10 +26,25 @@ const meta: Meta<AspectRatioProps> = {
     children: { control: { type: 'text' } },
   },
 };
+
 export default meta;
 
-export const Square: StoryObj<AspectRatioProps> = {};
-export const Video: StoryObj<AspectRatioProps> = { args: { ratio: 'video' } };
-export const Photo: StoryObj<AspectRatioProps> = { args: { ratio: 'photo' } };
+export const Square: StoryObj<AspectRatioProps> = {
+  args: {
+    ratio: 'square', // 명시적 설정 추가
+  },
+};
+
+export const Video: StoryObj<AspectRatioProps> = {
+  args: {
+    ratio: 'video',
+  },
+};
+
+export const Photo: StoryObj<AspectRatioProps> = {
+  args: {
+    ratio: 'photo',
+  },
+};
 
 export const WithoutChildren: StoryObj<AspectRatioProps> = {};

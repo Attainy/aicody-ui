@@ -97,7 +97,7 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
       {isOpen && (
         <div
           className={twMerge(
-            'fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70 p-4 transition-opacity duration-200',
+            'fixed inset-0 z-50 flex items-center justify-center bg-brand-gray/50 p-4 transition-opacity duration-200',
             isOpen ? 'opacity-100' : 'opacity-0'
           )}
           onClick={handleOverlayClick}

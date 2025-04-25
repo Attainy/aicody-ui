@@ -16,6 +16,10 @@ export const switchVariants = tv({
       true: '',
       false: 'bg-gray-300',
     },
+    disabled: {
+      true: 'opacity-50 cursor-not-allowed',
+      false: '',
+    },
   },
   compoundVariants: [
     {
@@ -38,15 +42,16 @@ export const switchVariants = tv({
     size: 'md',
     kind: 'primary',
     checked: false,
+    disabled: false,
   },
 });
 
 export const switchThumbVariants = tv({
   variants: {
     size: {
-      sm: 'h-3 w-3',
-      md: 'h-4 w-4',
-      lg: 'h-5 w-5',
+      sm: 'h-3 w-3 left-0.5',
+      md: 'h-4 w-4 left-0.5',
+      lg: 'h-5 w-5 left-[3px]',
     },
     checked: {
       true: '',
@@ -85,7 +90,6 @@ export const labelVariants = tv({
     },
   },
   defaultVariants: {
-    kind: 'primary',
     size: 'md',
   },
 });
