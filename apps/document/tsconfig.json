@@ -4,5 +4,9 @@
     "baseUrl": "."
   },
   "exclude": [".docusaurus", "build"],
-  "references": []
+  "references": [
+    {
+      "path": "../../libs/react"
+    }
+  ]
 }
