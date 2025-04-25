@@ -1,85 +1,91 @@
-# AicodyUi
+# Aicody UI
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+Aicody UI는 현대적이고 접근성 높은 React 컴포넌트 라이브러리입니다. Tailwind CSS를 기반으로 스타일링된 다양한 UI 컴포넌트를 제공하며, 모노레포 구조를 통해 효율적인 개발과 유지보수를 지원합니다. 이 프로젝트는 `libs/core`와 `libs/react`로 구성된 코어 라이브러리와 `apps/document`에서 제공되는 문서를 포함합니다.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+## 디렉토리 구조
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+- **apps/document**: Docusaurus를 사용한 문서 사이트. 컴포넌트 사용법과 설치 가이드를 제공합니다.
+- **libs/core**: Tailwind CSS 기반의 테마, 색상, 스타일링 유틸리티를 정의합니다.
+- **libs/react**: React 기반 UI 컴포넌트(Accordion, Button, Dialog 등)를 제공합니다.
+- **storybook-static**: Storybook으로 빌드된 컴포넌트 시각화 도구.
 
-## Finish your CI setup
+## 설치
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/X9yhuRpzc4)
+1. **의존성 설치**:
 
-## Run tasks
+   ```bash
+   pnpm install
+   ```
 
-To run the dev server for your app, use:
+2. **빌드**:
 
-```sh
-npx nx serve aicody-ui
+   ```bash
+   nx build core
+   nx build react
+   nx build document
+   ```
+
+3. **Storybook 실행**:
+
+   ```bash
+   nx storybook react
+   ```
+
+4. **문서 사이트 실행**:
+   ```bash
+   nx serve document
+   ```
+
+## 사용법
+
+`libs/react`에서 제공하는 컴포넌트를 사용할 수 있습니다. 예를 들어, `Button` 컴포넌트를 사용하는 방법은 다음과 같습니다:
+
+```tsx
+import { Button } from "@aicody-ui/react";
+
+function App() {
+  return <Button kind="primary">Click me</Button>;
+}
 ```
 
-To create a production bundle:
+자세한 사용법은 [문서 사이트](http://localhost:3000/aicody-ui)에서 확인하세요.
 
-```sh
-npx nx build aicody-ui
-```
+## 주요 기능
 
-To see all available targets to run for a project, run:
+- **컴포넌트**: Accordion, AlertDialog, AspectRatio, Button, Checkbox, Collapsible, Command, ContextMenu, Dialog, ProfilePhoto, Switch 등 다양한 UI 컴포넌트를 제공합니다.
+- **스타일링**: Tailwind CSS와 `tailwind-variants`를 사용하여 유연하고 커스터마이징 가능한 스타일을 지원합니다.
+- **접근성**: ARIA 속성과 키보드 내비게이션을 지원하여 접근성을 보장합니다.
+- **모노레포**: Nx를 사용하여 코어와 React 라이브러리를 효율적으로 관리합니다.
 
-```sh
-npx nx show project aicody-ui
-```
+## 기여
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+1. **레포지토리 클론**:
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+   ```bash
+   git clone <repository-url>
+   cd aicody-ui
+   ```
 
-## Add new projects
+2. **의존성 설치**:
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+   ```bash
+   pnpm install
+   ```
 
-Use the plugin's generator to create new projects.
+3. **변경 사항 작성**:
 
-To generate a new application, use:
+   - `libs/react/src/components` 디렉토리에서 새로운 컴포넌트를 추가하거나 기존 컴포넌트를 수정하세요.
+   - `apps/document/docs` 디렉토리에서 문서를 업데이트하세요.
 
-```sh
-npx nx g @nx/react:app demo
-```
+4. **테스트**:
 
-To generate a new library, use:
+   ```bash
+   nx test react
+   ```
 
-```sh
-npx nx g @nx/react:lib mylib
-```
+5. **PR 제출**:
+   - 변경 사항을 커밋하고 푸시한 후 Pull Request를 생성하세요.
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+## 라이선스
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-# aicody-ui
-
-aicody-ui · The smarter way to style UI
+MIT License

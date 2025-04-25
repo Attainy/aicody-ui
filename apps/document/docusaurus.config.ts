@@ -87,7 +87,7 @@ const config: Config = {
             { label: 'GitHub', href: 'https://github.com/aicody/aicody-ui' },
 
             {
-              label: 'blog',
+              label: 'Blog',
               href: 'https://yunicornlab.tistory.com/',
             },
           ],
