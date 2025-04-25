@@ -1,38 +1,44 @@
-import React from 'react';
-import { mergeClass } from '../../utils/mergeClass';
-import { tv, VariantProps } from 'tailwind-variants';
+import React, { useState } from 'react';
+import { twMerge } from 'tailwind-merge';
+import { triggerVariants, contentVariants } from './AccordionVariants';
+import type { AccordionProps } from './Accordion.types';
+import { ChevronUp, ChevronDown } from 'lucide-react';
 
-export const accordionVariants = tv({
-  base: 'w-full border rounded-md transition-colors',
-  variants: {
-    kind: {
-      primary:
-        'border-primary-main bg-primary-main/10 text-primary-main hover:bg-primary-main/20',
-      secondary:
-        'border-secondary-main bg-secondary-main/10 text-secondary-main hover:bg-secondary-main/20',
-      outline:
-        'border-primary-main bg-transparent text-primary-main hover:bg-primary-main/10',
-      plain: 'border-none bg-transparent text-inherit hover:bg-transparent',
-    },
-    size: {
-      sm: 'p-2 text-sm',
-      md: 'p-4',
-      lg: 'p-6 text-lg',
-    },
-  },
-  defaultVariants: { kind: 'primary', size: 'md' },
-});
+export const Accordion: React.FC<AccordionProps> = ({
+  kind = 'primary',
+  triggerText = 'Toggle Content',
+  children,
+  ...props
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-export type AccordionProps = React.DetailsHTMLAttributes<HTMLDetailsElement> &
-  VariantProps<typeof accordionVariants>;
+  const handleToggle = () => setIsOpen((prev) => !prev);
 
-export const Accordion = React.forwardRef<HTMLDetailsElement, AccordionProps>(
-  ({ kind, size, className, ...props }, ref) => (
-    <details
-      ref={ref}
-      className={mergeClass(accordionVariants({ kind, size }), className)}
-      {...props}
-    />
-  )
-);
+  return (
+    <div className="relative" {...props}>
+      <div
+        onClick={handleToggle}
+        className={twMerge(
+          'flex items-center justify-between w-[500px] px-3 py-2 rounded-md transition-colors gap-2 border cursor-pointer',
+          triggerVariants({ kind, isOpen })
+        )}
+        aria-expanded={isOpen}
+      >
+        <div>{triggerText}</div>
+        {isOpen ? <ChevronUp /> : <ChevronDown />}
+      </div>
+      {isOpen && (
+        <div
+          className={twMerge(
+            'absolute top-full left-0 mt-2 px-3 py-2 rounded-md transition-all duration-300 overflow-auto border',
+            contentVariants({ kind })
+          )}
+        >
+          {children}
+        </div>
+      )}
+    </div>
+  );
+};
+
 Accordion.displayName = 'Accordion';

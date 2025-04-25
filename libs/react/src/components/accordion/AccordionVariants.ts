@@ -1,20 +1,55 @@
 import { tv } from 'tailwind-variants';
 
-export const accordionVariants = tv({
-  base: 'border rounded-md shadow-sm',
+export const triggerVariants = tv({
   variants: {
-    variant: {
-      default: '',
-      ghost: 'bg-transparent border-none shadow-none',
+    kind: {
+      primary:
+        'border-primary-main text-primary-main hover:bg-primary-base hover:border-primary-base',
+      secondary:
+        'border-secondary-main text-secondary-main hover:bg-secondary-base hover:border-secondary-base',
+      outline: 'border-brand-black text-brand-black hover:bg-brand-base',
+      plain:
+        'border-brand-black text-brand-black hover:bg-brand-base hover:border-brand-base',
     },
-    size: {
-      sm: 'text-sm px-3 py-2',
-      md: 'text-base px-4 py-3',
-      lg: 'text-lg px-5 py-4',
+    isOpen: {
+      true: '',
+      false: '',
+    },
+  },
+  compoundVariants: [
+    {
+      kind: 'primary',
+      isOpen: true,
+      class: 'bg-primary-base border-primary-base',
+    },
+    {
+      kind: 'secondary',
+      isOpen: true,
+      class: 'bg-secondary-base border-secondary-base',
+    },
+    {
+      kind: 'plain',
+      isOpen: true,
+      class: 'bg-brand-base border-brand-base',
+    },
+  ],
+  defaultVariants: {
+    kind: 'primary',
+    isOpen: false,
+  },
+});
+
+export const contentVariants = tv({
+  variants: {
+    kind: {
+      primary: 'border-primary-base',
+      secondary: 'border-secondary-base',
+      outline: 'border-brand-ㅆgray',
+      plain: 'border-brand-base',
     },
   },
   defaultVariants: {
-    variant: 'default',
-    size: 'md',
+    kind: 'primary',
+    isOpen: false,
   },
 });

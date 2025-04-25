@@ -19,6 +19,7 @@ module.exports = {
         'primary-base': '#fdecee',
         'secondary-main': '#06A5F0',
         'secondary-sub': '#4ac6ff',
+        'secondary-base': '#e5f6ff',
       },
     },
   },
