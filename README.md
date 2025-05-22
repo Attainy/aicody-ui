@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="apps/document/static/img/aicody-logo.png" alt="Aicody UI Logo" width="200"/>
+  <img width="255" alt="Image" src="https://github.com/user-attachments/assets/deb2d429-f4d0-4143-8c8d-87bf7bcfc076" />
 </p>
 
 <h1 align="center">Aicody UI</h1>
