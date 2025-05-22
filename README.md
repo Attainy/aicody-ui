@@ -28,36 +28,24 @@
 - **apps/document**: Docusaurus를 사용한 문서 사이트. 컴포넌트 사용법과 설치 가이드를 제공합니다.
 - **libs/core**: Tailwind CSS 기반의 테마, 색상, 스타일링 유틸리티를 정의합니다.
 - **libs/react**: React 기반 UI 컴포넌트(Accordion, Button, Dialog 등)를 제공합니다.
-- **storybook-static**: Storybook으로 빌드된 컴포넌트 시각화 도구.
 
 <br/>
 
-## 설치
+### 🚀 설치
 
-1. **의존성 설치**:
+npm, Yarn, pnpm 중 선호하는 패키지 매니저를 사용해 @aicody-ui/react와 필요한 peer dependencies를 설치하세요:
 
-   ```bash
-   pnpm install
-   ```
+```
+# npm
+npm install @aicody-ui/react tailwind-variants
 
-2. **빌드**:
+# Yarn
+yarn add @aicody-ui/react tailwind-variants
 
-   ```bash
-   pnpm nx run @aicody-ui/core:build
-   pnpm nx run @aicody-ui/react:build
-   pnpm run docs:build
-   ```
-
-3. **Storybook 실행**:
-
-   ```bash
-   pnpm nx run storybook
-   ```
-
-4. **문서 사이트 실행**:
-   ```bash
-   pnpm run docs:start
-   ```
+# pnpm
+pnpm add @aicody-ui/react tailwind-variants
+```
+Tip: 프로젝트에 Tailwind CSS 설정이 이미 되어 있어야 합니다. 없다면 Tailwind CSS 설치 가이드를 참고하세요.
 <br/>
 
 ## 🎨 사용법
